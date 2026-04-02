@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, Outlet, useLocation } from "react-router";
 import { Menu, X, ChevronDown } from "lucide-react";
+import { Analytics } from "@vercel/analytics/react";
 
 // @ts-ignore
 import logoSvg from "@/imports/logo.svg";
@@ -226,6 +227,7 @@ export function Layout() {
           </div>
         </div>
       </footer>
+      <Analytics />
     </div>
   );
 }
