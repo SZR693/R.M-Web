@@ -144,59 +144,17 @@ export function Home() {
           }}
         />
         <Container style={{ position: "relative", zIndex: 2, width: "100%" }}>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center",
-            }}
-          >
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
             <div style={{ maxWidth: 700 }}>
-              <div
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 10,
-                  fontSize: "0.75rem",
-                  fontWeight: 500,
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  color: "var(--rm-gold)",
-                  marginBottom: "2rem",
-                }}
-              >
+              <div style={{ display: "inline-flex", alignItems: "center", gap: 10, fontSize: "0.75rem", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--rm-gold)", marginBottom: "2rem" }}>
                 <span style={{ width: 32, height: 1, background: "var(--rm-gold)", display: "inline-block" }} />
-                Agence Digitale — Lyon
+                Création de Sites Web & Design Digital sur mesure — Lyon
                 <span style={{ width: 32, height: 1, background: "var(--rm-gold)", display: "inline-block" }} />
               </div>
-              <h1
-                style={{
-                  fontFamily: "var(--rm-serif)",
-                  fontSize: "clamp(3rem, 5.5vw, 5.4rem)",
-                  fontWeight: 300,
-                  lineHeight: 1.08,
-                  letterSpacing: "-0.01em",
-                  color: "var(--rm-text)",
-                  marginBottom: "1.8rem",
-                }}
-              >
-                L'élégance digitale,
-                <br />
-                <Gold>l'intelligence</Gold>
-                <br />
-                <Bold>artificielle</Bold> en plus.
+              <h1 style={{ fontFamily: "var(--rm-serif)", fontSize: "clamp(3rem, 5.5vw, 5.4rem)", fontWeight: 300, lineHeight: 1.08, letterSpacing: "-0.01em", color: "var(--rm-text)", marginBottom: "1.8rem" }}>
+                L'élégance digitale, <br /> <Gold>l'intelligence</Gold> <br /> <Bold>artificielle</Bold> en plus.
               </h1>
-              <p
-                style={{
-                  fontSize: "1.05rem",
-                  color: "var(--rm-muted)",
-                  maxWidth: 520,
-                  margin: "0 auto 2.8rem",
-                  lineHeight: 1.85,
-                  fontWeight: 300,
-                }}
-              >
+              <p style={{ fontSize: "1.05rem", color: "var(--rm-muted)", maxWidth: 520, margin: "0 auto 2.8rem", lineHeight: 1.85, fontWeight: 300 }}>
                 Création de sites web premiums, SEO, SEA, SMA et intégration d'automatisations IA pour propulser votre entreprise vers l'avenir.
               </p>
               <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", justifyContent: "center" }}>
@@ -211,18 +169,11 @@ export function Home() {
       {/* Stats */}
       <div style={{ background: "var(--rm-ink)", padding: "3rem 0" }}>
         <Container>
-          <div
-            style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", textAlign: "center" }}
-            className="max-md:!grid-cols-2 max-[480px]:!grid-cols-1"
-          >
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", textAlign: "center" }} className="max-md:!grid-cols-2 max-[480px]:!grid-cols-1">
             {stats.map((s) => (
               <div key={s.label} style={{ padding: "1.5rem", borderRight: "1px solid rgba(255,255,255,0.07)" }}>
-                <div style={{ fontFamily: "var(--rm-serif)", fontSize: "3rem", fontWeight: 600, color: "var(--rm-gold-lt)", lineHeight: 1, marginBottom: "0.5rem" }}>
-                  {s.num}
-                </div>
-                <div style={{ fontSize: "0.78rem", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(240,239,232,0.5)" }}>
-                  {s.label}
-                </div>
+                <div style={{ fontFamily: "var(--rm-serif)", fontSize: "3rem", fontWeight: 600, color: "var(--rm-gold-lt)", lineHeight: 1, marginBottom: "0.5rem" }}>{s.num}</div>
+                <div style={{ fontSize: "0.78rem", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(240,239,232,0.5)" }}>{s.label}</div>
               </div>
             ))}
           </div>
@@ -235,9 +186,7 @@ export function Home() {
           <div style={{ display: "flex", alignItems: "flex-start", gap: "5rem", marginBottom: "5rem", flexWrap: "wrap" }}>
             <Reveal direction="left" style={{ flex: 1, minWidth: 280 }}>
               <SectionEyebrow>Expertises</SectionEyebrow>
-              <SerifTitle>
-                Nos solutions <Gold>digitales</Gold> sur-mesure
-              </SerifTitle>
+              <SerifTitle>Nos solutions <Gold>digitales</Gold> sur-mesure</SerifTitle>
             </Reveal>
             <Reveal direction="right" style={{ flex: 1, minWidth: 280, marginTop: "2.2rem" }}>
               <p style={{ color: "var(--rm-muted)", fontSize: "0.95rem", lineHeight: 1.85, fontWeight: 300 }}>
@@ -252,7 +201,7 @@ export function Home() {
           >
             {services.map((s, i) => (
               <Reveal key={s.num} delay={i * 0.08}>
-                <Link to={s.path} style={{ textDecoration: "none", color: "inherit", display: "block" }}>
+                <Link to={s.path} style={{ textDecoration: "none", color: "inherit", display: "block", height: "100%" }}>
                   <div
                     style={{
                       background: "var(--rm-card)",
@@ -263,46 +212,18 @@ export function Home() {
                       overflow: "hidden",
                       transition: "transform 0.35s, box-shadow 0.35s",
                       height: "100%",
+                      display: "flex",
+                      flexDirection: "column",
                     }}
                     className="hover:-translate-y-1.5 hover:shadow-lg"
                   >
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: "1.5rem",
-                        right: "2rem",
-                        fontFamily: "var(--rm-serif)",
-                        fontSize: "4rem",
-                        fontWeight: 600,
-                        color: "var(--rm-bg3)",
-                        lineHeight: 1,
-                      }}
-                    >
-                      {s.num}
+                    <div style={{ position: "absolute", top: "1.5rem", right: "2rem", fontFamily: "var(--rm-serif)", fontSize: "4rem", fontWeight: 600, color: "var(--rm-bg3)", lineHeight: 1 }}>{s.num}</div>
+                    <div style={{ width: 48, height: 48, border: "1px solid var(--rm-border)", borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1.5rem", background: "var(--rm-bg)", color: "var(--rm-gold)" }}>{s.icon}</div>
+                    <h3 style={{ fontFamily: "var(--rm-serif)", fontSize: "1.4rem", fontWeight: 600, marginBottom: "0.8rem", color: "var(--rm-text)", minHeight: "3.5rem", display: "flex", alignItems: "center" }}>{s.title}</h3>
+                    <p style={{ color: "var(--rm-muted)", fontSize: "0.86rem", lineHeight: 1.85, fontWeight: 300, marginBottom: "1.5rem", minHeight: "4.5rem" }}>{s.desc}</p>
+                    <div style={{ marginTop: "auto" }}>
+                      <ServiceFeatureList items={s.items} />
                     </div>
-                    <div
-                      style={{
-                        width: 48,
-                        height: 48,
-                        border: "1px solid var(--rm-border)",
-                        borderRadius: 12,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        marginBottom: "1.5rem",
-                        background: "var(--rm-bg)",
-                        color: "var(--rm-gold)",
-                      }}
-                    >
-                      {s.icon}
-                    </div>
-                    <h3 style={{ fontFamily: "var(--rm-serif)", fontSize: "1.4rem", fontWeight: 600, marginBottom: "0.8rem", color: "var(--rm-text)" }}>
-                      {s.title}
-                    </h3>
-                    <p style={{ color: "var(--rm-muted)", fontSize: "0.86rem", lineHeight: 1.85, fontWeight: 300, marginBottom: "1.5rem" }}>
-                      {s.desc}
-                    </p>
-                    <ServiceFeatureList items={s.items} />
                   </div>
                 </Link>
               </Reveal>
@@ -317,41 +238,17 @@ export function Home() {
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: "5rem" }}>
               <SectionEyebrow center>Méthodologie</SectionEyebrow>
-              <SerifTitle center>
-                Un processus <Gold>clair</Gold> et transparent
-              </SerifTitle>
+              <SerifTitle center>Un processus <Gold>clair</Gold> et transparent</SerifTitle>
               <p style={{ color: "var(--rm-muted)", maxWidth: 500, margin: "1rem auto 0", fontSize: "0.95rem", fontWeight: 300, lineHeight: 1.8 }}>
                 De la première idée à la mise en ligne, chaque étape est pilotée avec vous.
               </p>
             </div>
           </Reveal>
           <Reveal>
-            <div
-              style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", position: "relative", gap: "2rem" }}
-              className="max-md:!grid-cols-2"
-            >
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", position: "relative", gap: "2rem" }} className="max-md:!grid-cols-2">
               {steps.map((s) => (
                 <div key={s.n} style={{ textAlign: "center", position: "relative", zIndex: 1 }}>
-                  <div
-                    style={{
-                      width: 72,
-                      height: 72,
-                      border: "1px solid var(--rm-border)",
-                      borderRadius: "50%",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      margin: "0 auto 2rem",
-                      background: "var(--rm-card)",
-                      fontFamily: "var(--rm-serif)",
-                      fontSize: "1.4rem",
-                      fontWeight: 600,
-                      color: "var(--rm-gold)",
-                      boxShadow: "var(--rm-shadow)",
-                    }}
-                  >
-                    {s.n}
-                  </div>
+                  <div style={{ width: 72, height: 72, border: "1px solid var(--rm-border)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 2rem", background: "var(--rm-card)", fontFamily: "var(--rm-serif)", fontSize: "1.4rem", fontWeight: 600, color: "var(--rm-gold)", boxShadow: "var(--rm-shadow)" }}>{s.n}</div>
                   <h4 style={{ fontFamily: "var(--rm-serif)", fontSize: "1.15rem", fontWeight: 600, marginBottom: "0.6rem" }}>{s.title}</h4>
                   <p style={{ color: "var(--rm-muted)", fontSize: "0.84rem", lineHeight: 1.75, fontWeight: 300 }}>{s.desc}</p>
                 </div>
@@ -367,59 +264,22 @@ export function Home() {
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: "4rem" }}>
               <div style={{ marginBottom: "2rem", display: "flex", justifyContent: "center" }}>
-                <img
-                  src={logoImg}
-                  alt="R.M Web Design"
-                  style={{
-                    height: 90,
-                    width: "auto",
-                    objectFit: "contain",
-                    filter: "drop-shadow(0 4px 24px rgba(156,112,64,0.25))",
-                  }}
-                />
+                <img src={logoImg} alt="R.M Web Design" style={{ height: 90, width: "auto", objectFit: "contain", filter: "drop-shadow(0 4px 24px rgba(156,112,64,0.25))" }} />
               </div>
               <SectionEyebrow center>Pourquoi nous choisir</SectionEyebrow>
-              <SerifTitle center>
-                L'agence qui fait la <Gold>différence</Gold>
-              </SerifTitle>
+              <SerifTitle center>L'agence qui fait la <Gold>différence</Gold></SerifTitle>
               <p style={{ color: "var(--rm-muted)", maxWidth: 560, margin: "1rem auto 0", fontSize: "0.95rem", fontWeight: 300, lineHeight: 1.8 }}>
                 Plus qu'une agence, un partenaire de croissance. Voici ce qui nous distingue et pourquoi nos clients nous font confiance.
               </p>
             </div>
           </Reveal>
-          <div
-            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }}
-            className="max-md:!grid-cols-1 max-lg:!grid-cols-2"
-          >
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }} className="max-md:!grid-cols-1 max-lg:!grid-cols-2">
             {whyUs.map((item, i) => (
               <Reveal key={item.title} delay={i * 0.08}>
-                <div
-                  style={{
-                    background: "var(--rm-card)",
-                    border: "1px solid var(--rm-border)",
-                    borderRadius: "var(--rm-r)",
-                    padding: "2.2rem 2rem",
-                    height: "100%",
-                    position: "relative",
-                    overflow: "hidden",
-                  }}
-                >
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      height: 3,
-                      background: "linear-gradient(90deg, var(--rm-gold), var(--rm-gold-lt))",
-                    }}
-                  />
-                  <h3 style={{ fontFamily: "var(--rm-serif)", fontSize: "1.2rem", fontWeight: 600, marginBottom: "0.7rem", color: "var(--rm-text)" }}>
-                    {item.title}
-                  </h3>
-                  <p style={{ color: "var(--rm-muted)", fontSize: "0.86rem", lineHeight: 1.85, fontWeight: 300 }}>
-                    {item.desc}
-                  </p>
+                <div style={{ background: "var(--rm-card)", border: "1px solid var(--rm-border)", borderRadius: "var(--rm-r)", padding: "2.2rem 2rem", height: "100%", position: "relative", overflow: "hidden" }}>
+                  <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: "linear-gradient(90deg, var(--rm-gold), var(--rm-gold-lt))" }} />
+                  <h3 style={{ fontFamily: "var(--rm-serif)", fontSize: "1.2rem", fontWeight: 600, marginBottom: "0.7rem", color: "var(--rm-text)" }}>{item.title}</h3>
+                  <p style={{ color: "var(--rm-muted)", fontSize: "0.86rem", lineHeight: 1.85, fontWeight: 300 }}>{item.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -433,9 +293,7 @@ export function Home() {
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: "4rem" }}>
               <SectionEyebrow center>FAQ</SectionEyebrow>
-              <SerifTitle center>
-                Questions <Gold>fréquentes</Gold>
-              </SerifTitle>
+              <SerifTitle center>Questions <Gold>fréquentes</Gold></SerifTitle>
             </div>
           </Reveal>
           <Reveal>
@@ -449,26 +307,9 @@ export function Home() {
         <Container>
           <Reveal>
             <div style={{ marginBottom: "2rem", display: "flex", justifyContent: "center" }}>
-              <img
-                src={logoImg}
-                alt="R.M Web Design"
-                style={{
-                  height: 70,
-                  width: "auto",
-                  objectFit: "contain",
-                  filter: "brightness(1.15) drop-shadow(0 2px 12px rgba(156,112,64,0.4))",
-                }}
-              />
+              <img src={logoImg} alt="R.M Web Design" style={{ height: 70, width: "auto", objectFit: "contain", filter: "brightness(1.15) drop-shadow(0 2px 12px rgba(156,112,64,0.4))" }} />
             </div>
-            <h2
-              style={{
-                fontFamily: "var(--rm-serif)",
-                fontSize: "clamp(2rem, 4vw, 3.5rem)",
-                fontWeight: 300,
-                color: "var(--rm-ink-strong)",
-                marginBottom: "1.5rem",
-              }}
-            >
+            <h2 style={{ fontFamily: "var(--rm-serif)", fontSize: "clamp(2rem, 4vw, 3.5rem)", fontWeight: 300, color: "var(--rm-ink-strong)", marginBottom: "1.5rem" }}>
               Prêt à passer à <em style={{ fontStyle: "italic", color: "var(--rm-gold)" }}>l'action</em> ?
             </h2>
             <p style={{ color: "var(--rm-ink-fade)", maxWidth: 500, margin: "0 auto 2.5rem", fontSize: "0.95rem", fontWeight: 300, lineHeight: 1.8 }}>
@@ -494,54 +335,15 @@ function FaqAccordion({ items }: { items: { q: string; a: string }[] }) {
         <div key={i} style={{ borderBottom: "1px solid var(--rm-border)", ...(i === 0 ? { borderTop: "1px solid var(--rm-border)" } : {}) }}>
           <button
             onClick={() => setOpen(open === i ? null : i)}
-            style={{
-              width: "100%",
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              padding: "1.6rem 0",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              fontFamily: "var(--rm-sans)",
-              fontSize: "1rem",
-              fontWeight: 500,
-              color: "var(--rm-text)",
-              textAlign: "left",
-              gap: "1rem",
-            }}
+            style={{ width: "100%", background: "none", border: "none", cursor: "pointer", padding: "1.6rem 0", display: "flex", justifyContent: "space-between", alignItems: "center", fontFamily: "var(--rm-sans)", fontSize: "1rem", fontWeight: 500, color: "var(--rm-text)", textAlign: "left", gap: "1rem" }}
           >
             {item.q}
-            <div
-              style={{
-                width: 28,
-                height: 28,
-                flexShrink: 0,
-                border: `1px solid ${open === i ? "var(--rm-gold)" : "var(--rm-border)"}`,
-                borderRadius: "50%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                background: open === i ? "var(--rm-gold)" : "transparent",
-                transition: "all 0.3s",
-                color: open === i ? "#fff" : "var(--rm-gold)",
-                fontSize: "1.2rem",
-                lineHeight: 1,
-              }}
-            >
+            <div style={{ width: 28, height: 28, flexShrink: 0, border: `1px solid ${open === i ? "var(--rm-gold)" : "var(--rm-border)"}`, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", background: open === i ? "var(--rm-gold)" : "transparent", transition: "all 0.3s", color: open === i ? "#fff" : "var(--rm-gold)", fontSize: "1.2rem", lineHeight: 1 }}>
               {open === i ? "−" : "+"}
             </div>
           </button>
-          <div
-            style={{
-              maxHeight: open === i ? 200 : 0,
-              overflow: "hidden",
-              transition: "max-height 0.4s ease",
-            }}
-          >
-            <p style={{ paddingBottom: "1.5rem", color: "var(--rm-muted)", fontSize: "0.9rem", lineHeight: 1.85, fontWeight: 300 }}>
-              {item.a}
-            </p>
+          <div style={{ maxHeight: open === i ? 200 : 0, overflow: "hidden", transition: "max-height 0.4s ease" }}>
+            <p style={{ paddingBottom: "1.5rem", color: "var(--rm-muted)", fontSize: "0.9rem", lineHeight: 1.85, fontWeight: 300 }}>{item.a}</p>
           </div>
         </div>
       ))}
