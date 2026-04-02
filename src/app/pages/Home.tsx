@@ -14,6 +14,7 @@ import {
 } from "../components/shared";
 import { Monitor, Search, Megaphone, Share2, Bot, Plug } from "lucide-react";
 
+// @ts-ignore
 import logoImg from "../../imports/image-4.png";
 
 const stats = [
