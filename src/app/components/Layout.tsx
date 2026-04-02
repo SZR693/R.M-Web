@@ -79,7 +79,7 @@ export function Layout() {
           height: height,
           maxHeight: height,
           width: "auto",
-          maxWidth: "160px",
+          maxWidth: "140px",
           objectFit: "contain",
           filter: light ? "brightness(1.15)" : undefined,
         }}
@@ -120,54 +120,40 @@ export function Layout() {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              gap: "1rem",
+              gap: "0.5rem",
             }}
           >
-            <LogoComponent height={58} />
+            <LogoComponent height={50} />
 
-            {/* Barre de navigation Droite */}
             <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-              
-              {/* Liens Textes (Cachés sur mobile) */}
-              <div
-                style={{ display: "flex", alignItems: "center", gap: "1.6rem" }}
-                className="hidden xl:flex"
-              >
+              {/* Desktop links - Cachés sur mobile */}
+              <div className="hidden xl:flex" style={{ alignItems: "center", gap: "1.6rem", marginRight: "1rem" }}>
                 <Link to="/" style={{ fontSize: "0.78rem", fontWeight: 500, letterSpacing: "0.08em", textTransform: "uppercase", color: location.pathname === "/" ? "var(--rm-text)" : "var(--rm-muted)", textDecoration: "none" }}>Accueil</Link>
                 <Link to="/tarifs" style={{ fontSize: "0.78rem", fontWeight: 500, letterSpacing: "0.08em", textTransform: "uppercase", color: location.pathname === "/tarifs" ? "var(--rm-text)" : "var(--rm-muted)", textDecoration: "none" }}>Tarifs</Link>
-                
-                <div ref={dropdownRef} style={{ position: "relative" }}>
-                  <button onClick={() => setServicesOpen(!servicesOpen)} style={{ fontSize: "0.78rem", fontWeight: 500, letterSpacing: "0.08em", textTransform: "uppercase", color: isServicePage ? "var(--rm-text)" : "var(--rm-muted)", background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 4, padding: 0 }}>
-                    Services <ChevronDown size={14} style={{ transform: servicesOpen ? "rotate(180deg)" : "rotate(0)", transition: "0.2s" }} />
-                  </button>
-                  {servicesOpen && (
-                    <div style={{ position: "absolute", top: "calc(100% + 12px)", left: "50%", transform: "translateX(-50%)", background: "var(--rm-card)", border: "1px solid var(--rm-border)", borderRadius: 12, padding: "0.5rem 0", minWidth: 220, boxShadow: "var(--rm-shadow-lg)", zIndex: 100 }}>
-                      {serviceItems.map((item) => (
-                        <Link key={item.path} to={item.path} style={{ display: "block", padding: "0.65rem 1.4rem", fontSize: "0.82rem", color: location.pathname === item.path ? "var(--rm-gold)" : "var(--rm-text)", textDecoration: "none" }}>{item.label}</Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
               </div>
 
-              {/* BOUTONS ACTIONS (Toujours visibles) */}
+              {/* Boutons Actions - Visibles PARTOUT */}
               <div style={{ display: "flex", alignItems: "center", gap: "0.8rem" }}>
                 <button
                   onClick={() => setDark(!dark)}
-                  style={{ width: 40, height: 22, background: dark ? "var(--rm-gold-pale)" : "var(--rm-border)", borderRadius: 100, border: "none", cursor: "pointer", position: "relative" }}
+                  style={{ width: 38, height: 20, background: dark ? "var(--rm-gold-pale)" : "var(--rm-border)", borderRadius: 100, border: "none", cursor: "pointer", position: "relative" }}
                 >
-                  <span style={{ position: "absolute", top: 3, left: dark ? 21 : 3, width: 16, height: 16, borderRadius: "50%", background: "var(--rm-gold)", transition: "left 0.3s" }} />
+                  <span style={{ position: "absolute", top: 2, left: dark ? 20 : 2, width: 16, height: 16, borderRadius: "50%", background: "var(--rm-gold)", transition: "left 0.3s" }} />
                 </button>
-
+                
                 <Link
                   to="/contact"
-                  style={{ background: "var(--rm-text)", color: "var(--rm-bg)", padding: "0.6rem 1.2rem", borderRadius: 100, fontSize: "0.75rem", fontWeight: 600, textDecoration: "none", whiteSpace: "nowrap" }}
+                  style={{ background: "var(--rm-text)", color: "var(--rm-bg)", padding: "0.5rem 1rem", borderRadius: 100, fontSize: "0.75rem", fontWeight: 600, textDecoration: "none", whiteSpace: "nowrap" }}
                 >
                   Contact
                 </Link>
 
-                {/* Burger Menu (Caché sur Desktop) */}
-                <button className="xl:hidden" onClick={() => setMenuOpen(!menuOpen)} style={{ background: "none", border: "none", cursor: "pointer", color: "var(--rm-text)" }}>
+                {/* Burger Menu - Mobile uniquement */}
+                <button
+                  className="xl:hidden"
+                  onClick={() => setMenuOpen(!menuOpen)}
+                  style={{ background: "none", border: "none", cursor: "pointer", color: "var(--rm-text)" }}
+                >
                   {menuOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
               </div>
@@ -175,7 +161,7 @@ export function Layout() {
           </nav>
         </div>
 
-        {/* Menu Mobile */}
+        {/* Menu Mobile contenu */}
         {menuOpen && (
           <div className="xl:hidden" style={{ background: "var(--rm-card)", borderTop: "1px solid var(--rm-border)", padding: "1.5rem 6%", display: "flex", flexDirection: "column", gap: "0.8rem" }}>
             {allMobileItems.map((item) => (
@@ -186,11 +172,6 @@ export function Layout() {
       </header>
 
       <main style={{ paddingTop: 80 }}><Outlet /></main>
-      
-      {/* Footer (Simplifié pour le code complet) */}
-      <footer style={{ background: "#0c0b09", color: "rgba(240,239,232,0.5)", padding: "4rem 6%", textAlign: "center", fontSize: "0.8rem" }}>
-        &copy; 2026 R.M Web Design.
-      </footer>
     </div>
   );
 }
