@@ -289,8 +289,8 @@ export function Contact() {
                     style={{
                       width: "100%",
                       padding: "1rem",
-                      background: loading ? "#ccc" : "linear-gradient(135deg, var(--rm-gold), var(--rm-gold-lt))",
-                      color: "#fff",
+                      background: loading ? "var(--rm-muted)" : "linear-gradient(135deg, var(--rm-gold), var(--rm-gold-lt))",
+                      color: loading ? "var(--rm-bg)" : "#fff",
                       border: "none",
                       borderRadius: 100,
                       fontFamily: "var(--rm-sans)",
@@ -298,9 +298,32 @@ export function Contact() {
                       fontWeight: 500,
                       letterSpacing: "0.04em",
                       cursor: loading ? "not-allowed" : "pointer",
-                      transition: "opacity 0.25s",
+                      transition: "all 0.25s",
                       marginTop: "0.5rem",
                       boxShadow: loading ? "none" : "0 4px 24px rgba(156,112,64,0.25)",
+                      outline: "none",
+                    }}
+                    onFocus={(e) => {
+                      if (!loading) {
+                        e.currentTarget.style.boxShadow = "0 0 0 3px rgba(156,112,64,0.3)";
+                      }
+                    }}
+                    onBlur={(e) => {
+                      if (!loading) {
+                        e.currentTarget.style.boxShadow = "0 4px 24px rgba(156,112,64,0.25)";
+                      }
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!loading) {
+                        e.currentTarget.style.transform = "translateY(-1px)";
+                        e.currentTarget.style.boxShadow = "0 6px 28px rgba(156,112,64,0.35)";
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!loading) {
+                        e.currentTarget.style.transform = "translateY(0)";
+                        e.currentTarget.style.boxShadow = "0 4px 24px rgba(156,112,64,0.25)";
+                      }
                     }}
                   >
                     {loading ? "Envoi en cours..." : "Envoyer ma demande de devis"}
