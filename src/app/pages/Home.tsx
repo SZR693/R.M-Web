@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router";
 import {
   Reveal,
@@ -15,7 +15,7 @@ import {
 import { Monitor, Search, Megaphone, Share2, Bot, Plug } from "lucide-react";
 
 // @ts-ignore
-import logoImg from "../../imports/image-4.png";
+import logoSvg from "../../imports/logo.svg";
 
 const stats = [
   { num: "100%", label: "Design Sur-Mesure" },
@@ -111,7 +111,24 @@ const whyUs = [
 ];
 
 export function Home() {
-  const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  // 1. On crée l'état initial
+  const [isDarkMode, setIsDarkMode] = useState(
+    window.matchMedia('(prefers-color-scheme: dark)').matches
+  );
+
+  // 2. On ajoute l'écouteur automatique (useEffect)
+  useEffect(() => {
+    const matcher = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    // Cette fonction s'exécute dès que le téléphone/PC change de mode
+    const handleChange = (e: MediaQueryListEvent) => {
+      setIsDarkMode(e.matches);
+    };
+
+    matcher.addEventListener('change', handleChange);
+    return () => matcher.removeEventListener('change', handleChange);
+  }, []);
+
   return (
     <>
       {/* Hero */}
@@ -266,7 +283,18 @@ export function Home() {
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: "4rem" }}>
               <div style={{ marginBottom: "2rem", display: "flex", justifyContent: "center" }}>
-                <img src={logoImg} alt="R.M Web Design" style={{ height: 90, width: "auto", objectFit: "contain", filter: "drop-shadow(0 4px 24px rgba(156,112,64,0.25))" }} />
+                <img 
+                src={logoSvg} 
+                alt="R.M Web Design" 
+                style={{ 
+                height: 140, // Taille augmentée comme tu le souhaitais
+                width: "auto", 
+                objectFit: "contain",
+                // Petite lueur dorée pour faire ressortir le logo sur le fond sombre
+                filter: isDarkMode ? "drop-shadow(0 0 20px rgba(162, 119, 67, 0.3))" : "none",
+                transition: "all 0.4s ease-in-out" 
+                   }} 
+                />
               </div>
               <SectionEyebrow center>Pourquoi nous choisir</SectionEyebrow>
               <SerifTitle center>L'agence qui fait la <Gold>différence</Gold></SerifTitle>
@@ -309,7 +337,17 @@ export function Home() {
         <Container>
           <Reveal>
             <div style={{ marginBottom: "2rem", display: "flex", justifyContent: "center" }}>
-              <img src={logoImg} alt="R.M Web Design" style={{ height: 70, width: "auto", objectFit: "contain", filter: "brightness(1.15) drop-shadow(0 2px 12px rgba(156,112,64,0.4))" }} />
+             <img 
+            src={logoSvg} 
+            alt="R.M Web Design" 
+            style={{ 
+            height: 100, // Un peu plus petit pour le bas de page
+            width: "auto", 
+            objectFit: "contain", 
+            filter: isDarkMode ? "drop-shadow(0 0 15px rgba(162, 119, 67, 0.2))" : "none",
+            transition: "all 0.4s ease-in-out" 
+           }} 
+          />
             </div>
             <h2 style={{ fontFamily: "var(--rm-serif)", fontSize: "clamp(2rem, 4vw, 3.5rem)", fontWeight: 300, color: "var(--rm-ink-strong)", marginBottom: "1.5rem" }}>
               Prêt à passer à <em style={{ fontStyle: "italic", color: "var(--rm-gold)" }}>l'action</em> ?
