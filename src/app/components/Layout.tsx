@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link, Outlet, useLocation } from "react-router";
 import { Menu, X, ChevronDown } from "lucide-react";
 
-import logoImg4 from "../../imports/image-4.png";
+import logoImg from "../../imports/logo.png";
 
 const serviceItems = [
   { label: "Création Web", path: "/creation-web" },
@@ -84,7 +84,7 @@ export function Layout() {
       >
         <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 6%" }}>
           <nav style={{ height: 80, display: "flex", alignItems: "center", justifyContent: "space-between", gap: "0.5rem" }}>
-            <Link to="/"><img src={logoImg4} alt="Logo" style={{ height: 50, maxWidth: "130px", objectFit: "contain" }} /></Link>
+            <Link to="/"><img src={logoImg} alt="Logo" style={{ height: 50, maxWidth: "130px", objectFit: "contain" }} /></Link>
 
             <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
               {/* Desktop Nav Links */}
@@ -135,7 +135,7 @@ export function Layout() {
           <div className="max-md:!grid-cols-1" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "3rem", marginBottom: "4rem" }}>
             <div>
               <div style={{ marginBottom: "1.4rem" }}>
-                <img src={logoImg4} alt="R.M Web Design" style={{ height: 64, filter: "brightness(1.1)" }} />
+                <img src={logoImg} alt="R.M Web Design" style={{ height: 64, filter: "brightness(1.1)" }} />
               </div>
               <p style={{ fontSize: "0.85rem", lineHeight: 1.8, fontWeight: 300 }}>Agence digitale spécialisée dans la création d'expériences web premiums, le SEO et l'intégration d'IA.</p>
             </div>
@@ -160,7 +160,7 @@ export function Layout() {
             <div>
               <h4 style={{ fontSize: "0.75rem", fontWeight: 600, textTransform: "uppercase", color: "#fff", marginBottom: "1.5rem" }}>Contact</h4>
               <p style={{ fontSize: "0.85rem", marginBottom: "0.5rem" }}>contact@rmwebdesign.fr</p>
-              <p style={{ fontSize: "0.85rem" }}>Lun — Ven : 9h — 18h</p>
+              <p style={{ fontSize: "0.85rem" }}>Lun – Ven : 9h – 18h</p>
             </div>
           </div>
           <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: "2rem", textAlign: "center", fontSize: "0.8rem" }}>
