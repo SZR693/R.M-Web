@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { Link, Outlet, useLocation } from "react-router";
 import { Menu, X, ChevronDown } from "lucide-react";
 
+
+
 import logoImg4 from "@/imports/image-4.png";
 
 const serviceItems = [
@@ -153,8 +155,8 @@ export function Layout() {
                 {[{label:"Accueil", path:"/"}, {label:"Tarifs", path:"/tarifs"}, {label:"Contact", path:"/contact"}].map((s) => (
                   <li key={s.path} style={{ marginBottom: "0.75rem" }}><Link to={s.path} style={{ fontSize: "0.85rem", textDecoration: "none", color: "inherit" }}>{s.label}</Link></li>
                 ))}
-                <li style={{ marginTop: "1rem" }}><span style={{ fontSize: "0.85rem", cursor: "pointer" }}>Mentions légales</span></li>
-                <li><span style={{ fontSize: "0.85rem", cursor: "pointer" }}>Politique de confidentialité</span></li>
+                <li style={{ marginTop: "1rem" }}><Link to="/mentions-legales" style={{ fontSize: "0.85rem", textDecoration: "none", color: "inherit" }}>Mentions légales</Link></li>
+                <li style={{ marginTop: "0.75rem" }}><Link to="/politique-de-confidentialite" style={{ fontSize: "0.85rem", textDecoration: "none", color: "inherit" }}>Politique de confidentialité</Link></li>
               </ul>
             </div>
             <div>

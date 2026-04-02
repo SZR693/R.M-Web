@@ -10,6 +10,8 @@ import { Integration } from "./pages/Integration";
 import { Contact } from "./pages/Contact";
 import { NotFound } from "./pages/NotFound";
 import { Tarifs } from "./pages/Tarifs";
+import MentionsLegales from "./pages/MentionsLegales";
+import PolitiqueConfidentialite from "./pages/PolitiqueConfidentialite";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +25,8 @@ export const router = createBrowserRouter([
       { path: "sma", Component: Sma },
       { path: "automatisation-ia", Component: AutomatisationIA },
       { path: "integration", Component: Integration },
+      { path: "mentions-legales", Component: MentionsLegales },
+      { path: "politique-de-confidentialite", Component: PolitiqueConfidentialite },
       { path: "tarifs", Component: Tarifs },
       { path: "contact", Component: Contact },
       { path: "*", Component: NotFound },
