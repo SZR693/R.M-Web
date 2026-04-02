@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link, Outlet, useLocation } from "react-router";
 import { Menu, X, ChevronDown } from "lucide-react";
 
-import logoImg4 from "../../imports/image-4.png";
+import logoImg4 from "@/imports/image-4.png";
 
 const serviceItems = [
   { label: "Création Web", path: "/creation-web" },
@@ -159,7 +159,9 @@ export function Layout() {
             </div>
             <div>
               <h4 style={{ fontSize: "0.75rem", fontWeight: 600, textTransform: "uppercase", color: "#fff", marginBottom: "1.5rem" }}>Contact</h4>
-              <p style={{ fontSize: "0.85rem", marginBottom: "0.5rem" }}>contact@rmwebdesign.fr</p>
+              <p style={{ marginBottom: "0.5rem" }}>
+              <a href="mailto:contact.rmwebdesign@gmail.com" style={{ color: "inherit", textDecoration: "none" }}>contact.rmwebdesign@gmail.com</a></p>
+              <p style={{ marginBottom: "0.5rem" }}><a href="tel:+33643367837" style={{ color: "inherit", textDecoration: "none" }}>+33 6 43 36 78 37</a></p>
               <p style={{ fontSize: "0.85rem" }}>Lun — Ven : 9h — 18h</p>
             </div>
           </div>

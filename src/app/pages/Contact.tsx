@@ -105,8 +105,8 @@ export function Contact() {
             </p>
             {[
               { label: "Zone d'intervention", value: "France entière & International" },
-              { label: "Email direct", value: "contact@rmwebdesign.fr" },
-              { label: "Téléphone", value: "+33 6 XX XX XX XX" },
+              { label: "Email direct", value: "contact.rmwebdesign@gmail.com" },
+              { label: "Téléphone", value: "+33 6 43 36 78 37" },
               { label: "Horaires", value: "Lundi — Vendredi : 9h00 – 18h00" },
             ].map((info) => (
               <div key={info.label} style={{ marginBottom: "2rem" }}>
