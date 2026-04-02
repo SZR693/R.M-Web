@@ -287,7 +287,7 @@ export function Home() {
                 src={logoSvg} 
                 alt="R.M Web Design" 
                 style={{ 
-                height: 140, // Taille augmentée comme tu le souhaitais
+                height: 220, // Taille augmentée comme tu le souhaitais
                 width: "auto", 
                 objectFit: "contain",
                 // Petite lueur dorée pour faire ressortir le logo sur le fond sombre
