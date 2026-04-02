@@ -111,6 +111,7 @@ const whyUs = [
 ];
 
 export function Home() {
+  const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   return (
     <>
       {/* Hero */}
