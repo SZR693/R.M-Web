@@ -1,0 +1,98 @@
+:root {
+  --rm-bg: #fafaf8;
+  --rm-bg2: #f2f1ed;
+  --rm-bg3: #eae9e3;
+  --rm-card: #ffffff;
+  --rm-text: #1c1c1a;
+  --rm-muted: #7a7a72;
+  --rm-subtle: #b0afa8;
+  --rm-gold: #9c7040;
+  --rm-gold-lt: #bf8d55;
+  --rm-gold-pale: #f4e8d2;
+  --rm-border: #e2e1da;
+  --rm-nav: rgba(250,250,248,0.92);
+  --rm-serif: 'Cormorant Garamond', Georgia, serif;
+  --rm-sans: 'Outfit', sans-serif;
+  --rm-shadow: 0 2px 20px rgba(28,28,26,0.06);
+  --rm-shadow-lg: 0 8px 48px rgba(28,28,26,0.10);
+  --rm-r: 12px;
+  --rm-ink: #0f0e0c;
+  --rm-ink-fade: rgba(240,239,232,0.5);
+  --rm-ink-strong: rgba(240,239,232,0.9);
+}
+
+.dark-mode {
+  --rm-bg: #111110;
+  --rm-bg2: #181816;
+  --rm-bg3: #1f1f1c;
+  --rm-card: #1e1e1b;
+  --rm-text: #f0efe8;
+  --rm-muted: #8a8a80;
+  --rm-subtle: #4a4a44;
+  --rm-gold: #c08a58;
+  --rm-gold-lt: #d4a872;
+  --rm-gold-pale: rgba(192,138,88,0.10);
+  --rm-border: rgba(240,239,232,0.08);
+  --rm-nav: rgba(17,17,16,0.94);
+  --rm-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  --rm-shadow-lg: 0 8px 48px rgba(0,0,0,0.4);
+  --rm-ink: #090908;
+  --rm-ink-fade: rgba(240,239,232,0.45);
+  --rm-ink-strong: rgba(240,239,232,0.92);
+}
+
+/* Fix native form elements in dark mode */
+.dark-mode input,
+.dark-mode select,
+.dark-mode textarea {
+  color-scheme: dark;
+}
+
+/* Smooth background/color transitions */
+.dark-mode *,
+.dark-mode *::before,
+.dark-mode *::after {
+  transition: background-color 0.35s, border-color 0.35s, color 0.35s;
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+
+/* Prevent horizontal overflow */
+html, body {
+  overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+  /* Reduce section padding on mobile */
+  .rm-section-pad {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+  }
+
+  /* Cards padding */
+  .rm-card-pad {
+    padding: 1.5rem !important;
+  }
+
+  /* Hero adjustments */
+  .rm-hero {
+    min-height: 80vh !important;
+  }
+
+  /* Footer grid */
+  .rm-footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  .rm-footer-grid > div {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .rm-section-pad {
+    padding-top: 44px !important;
+    padding-bottom: 44px !important;
+  }
+}
