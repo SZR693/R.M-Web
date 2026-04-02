@@ -6,7 +6,7 @@ export default function PolitiqueConfidentialite() {
       <h1 className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">
         Politique de <span className="text-gray-500">Confidentialité</span>
       </h1>
-      <p className="mb-12 opacity-60">Dernière mise à jour : [Date d'aujourd'hui]</p>
+      <p className="mb-12 opacity-60">Dernière mise à jour : 1 Avril 2026</p>
       
       <div className="space-y-8">
         <section className="p-8 rounded-2xl bg-white/5 border border-gray-200/20 shadow-lg backdrop-blur-sm">
