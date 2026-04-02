@@ -3,7 +3,7 @@ import { Container, SectionPad, Reveal, SectionEyebrow, SerifTitle, Gold } from 
 import { supabase } from '../../../utils/supabase/client';
 
 // @ts-ignore
-import logoImg from "../../imports/image-4.png";
+import logoSvg from "../../imports/logo.svg";
 
 const inputStyle: React.CSSProperties = {
   width: "100%",
@@ -84,16 +84,15 @@ export function Contact() {
         >
           <Reveal direction="left">
             <div style={{ marginBottom: "2rem" }}>
-              <img
-                src={logoImg}
-                alt="R.M Web Design"
-                style={{
-                  height: 80,
-                  width: "auto",
-                  objectFit: "contain",
-                  filter: "drop-shadow(0 4px 20px rgba(156,112,64,0.22))",
-                  marginBottom: "0.5rem",
-                }}
+              <img 
+              src={logoSvg} 
+              alt="Logo R.M Web" 
+              style={{ 
+              height: 100, 
+              width: "auto", 
+              objectFit: "contain",
+              marginBottom: "2rem" 
+                }} 
               />
             </div>
             <SectionEyebrow>Contact</SectionEyebrow>
