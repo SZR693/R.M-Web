@@ -125,177 +125,181 @@ export function Layout() {
           >
             <LogoComponent height={58} />
 
-            {/* Desktop nav */}
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "1.6rem",
-              }}
-              className="hidden xl:flex"
-            >
-              <Link
-                to="/"
-                style={{
-                  fontSize: "0.78rem",
-                  fontWeight: 500,
-                  letterSpacing: "0.08em",
-                  textTransform: "uppercase",
-                  color: location.pathname === "/" ? "var(--rm-text)" : "var(--rm-muted)",
-                  transition: "color 0.25s",
-                  textDecoration: "none",
-                }}
+            {/* Barre de navigation droite */}
+            <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+              
+              {/* Liens Desktop (cachés sur mobile) */}
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "1.6rem" }}
+                className="hidden xl:flex"
               >
-                Accueil
-              </Link>
-
-              <Link
-                to="/tarifs"
-                style={{
-                  fontSize: "0.78rem",
-                  fontWeight: 500,
-                  letterSpacing: "0.08em",
-                  textTransform: "uppercase",
-                  color: location.pathname === "/tarifs" ? "var(--rm-text)" : "var(--rm-muted)",
-                  transition: "color 0.25s",
-                  textDecoration: "none",
-                }}
-              >
-                Tarifs
-              </Link>
-
-              {/* Services dropdown */}
-              <div ref={dropdownRef} style={{ position: "relative" }}>
-                <button
-                  onClick={() => setServicesOpen(!servicesOpen)}
+                <Link
+                  to="/"
                   style={{
                     fontSize: "0.78rem",
                     fontWeight: 500,
                     letterSpacing: "0.08em",
                     textTransform: "uppercase",
-                    color: isServicePage ? "var(--rm-text)" : "var(--rm-muted)",
+                    color: location.pathname === "/" ? "var(--rm-text)" : "var(--rm-muted)",
                     transition: "color 0.25s",
-                    background: "none",
-                    border: "none",
-                    cursor: "pointer",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 4,
-                    padding: 0,
-                    fontFamily: "var(--rm-sans)",
+                    textDecoration: "none",
                   }}
                 >
-                  Services
-                  <ChevronDown
-                    size={14}
+                  Accueil
+                </Link>
+
+                <Link
+                  to="/tarifs"
+                  style={{
+                    fontSize: "0.78rem",
+                    fontWeight: 500,
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    color: location.pathname === "/tarifs" ? "var(--rm-text)" : "var(--rm-muted)",
+                    transition: "color 0.25s",
+                    textDecoration: "none",
+                  }}
+                >
+                  Tarifs
+                </Link>
+
+                <div ref={dropdownRef} style={{ position: "relative" }}>
+                  <button
+                    onClick={() => setServicesOpen(!servicesOpen)}
                     style={{
-                      transition: "transform 0.25s",
-                      transform: servicesOpen ? "rotate(180deg)" : "rotate(0)",
+                      fontSize: "0.78rem",
+                      fontWeight: 500,
+                      letterSpacing: "0.08em",
+                      textTransform: "uppercase",
+                      color: isServicePage ? "var(--rm-text)" : "var(--rm-muted)",
+                      transition: "color 0.25s",
+                      background: "none",
+                      border: "none",
+                      cursor: "pointer",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 4,
+                      padding: 0,
+                      fontFamily: "var(--rm-sans)",
+                    }}
+                  >
+                    Services
+                    <ChevronDown
+                      size={14}
+                      style={{
+                        transition: "transform 0.25s",
+                        transform: servicesOpen ? "rotate(180deg)" : "rotate(0)",
+                      }}
+                    />
+                  </button>
+
+                  {servicesOpen && (
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "calc(100% + 12px)",
+                        left: "50%",
+                        transform: "translateX(-50%)",
+                        background: "var(--rm-card)",
+                        border: "1px solid var(--rm-border)",
+                        borderRadius: 12,
+                        padding: "0.5rem 0",
+                        minWidth: 220,
+                        boxShadow: "var(--rm-shadow-lg)",
+                        zIndex: 100,
+                      }}
+                    >
+                      {serviceItems.map((item) => (
+                        <Link
+                          key={item.path}
+                          to={item.path}
+                          style={{
+                            display: "block",
+                            padding: "0.65rem 1.4rem",
+                            fontSize: "0.82rem",
+                            fontWeight: location.pathname === item.path ? 500 : 400,
+                            color: location.pathname === item.path ? "var(--rm-gold)" : "var(--rm-text)",
+                            textDecoration: "none",
+                            transition: "background 0.2s, color 0.2s",
+                          }}
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Boutons d'actions (Toujours visibles) */}
+              <div style={{ display: "flex", alignItems: "center", gap: "0.8rem" }}>
+                <button
+                  onClick={() => setDark(!dark)}
+                  style={{
+                    width: 40,
+                    height: 22,
+                    background: dark ? "var(--rm-gold-pale)" : "var(--rm-border)",
+                    borderRadius: 100,
+                    border: "none",
+                    cursor: "pointer",
+                    position: "relative",
+                    transition: "background 0.3s",
+                    flexShrink: 0,
+                  }}
+                >
+                  <span
+                    style={{
+                      position: "absolute",
+                      top: 3,
+                      left: dark ? 21 : 3,
+                      width: 16,
+                      height: 16,
+                      borderRadius: "50%",
+                      background: "var(--rm-gold)",
+                      transition: "left 0.3s",
                     }}
                   />
                 </button>
 
-                {servicesOpen && (
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "calc(100% + 12px)",
-                      left: "50%",
-                      transform: "translateX(-50%)",
-                      background: "var(--rm-card)",
-                      border: "1px solid var(--rm-border)",
-                      borderRadius: 12,
-                      padding: "0.5rem 0",
-                      minWidth: 220,
-                      boxShadow: "var(--rm-shadow-lg)",
-                      zIndex: 100,
-                    }}
-                  >
-                    {serviceItems.map((item) => (
-                      <Link
-                        key={item.path}
-                        to={item.path}
-                        style={{
-                          display: "block",
-                          padding: "0.65rem 1.4rem",
-                          fontSize: "0.82rem",
-                          fontWeight: location.pathname === item.path ? 500 : 400,
-                          color: location.pathname === item.path ? "var(--rm-gold)" : "var(--rm-text)",
-                          textDecoration: "none",
-                          transition: "background 0.2s, color 0.2s",
-                          letterSpacing: "0.02em",
-                        }}
-                        onMouseEnter={(e) => {
-                          (e.target as HTMLElement).style.background = "var(--rm-bg2)";
-                        }}
-                        onMouseLeave={(e) => {
-                          (e.target as HTMLElement).style.background = "transparent";
-                        }}
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              <button
-                onClick={() => setDark(!dark)}
-                style={{
-                  width: 40,
-                  height: 22,
-                  background: dark ? "var(--rm-gold-pale)" : "var(--rm-border)",
-                  borderRadius: 100,
-                  border: "none",
-                  cursor: "pointer",
-                  position: "relative",
-                  transition: "background 0.3s",
-                  flexShrink: 0,
-                }}
-              >
-                <span
+                <Link
+                  to="/contact"
                   style={{
-                    position: "absolute",
-                    top: 3,
-                    left: dark ? 21 : 3,
-                    width: 16,
-                    height: 16,
-                    borderRadius: "50%",
-                    background: "var(--rm-gold)",
-                    transition: "left 0.3s",
+                    background: "var(--rm-text)",
+                    color: "var(--rm-bg)",
+                    padding: "0.6rem 1.2rem",
+                    borderRadius: 100,
+                    fontSize: "0.75rem",
+                    fontWeight: 600,
+                    textDecoration: "none",
+                    transition: "background 0.25s",
+                    whiteSpace: "nowrap",
                   }}
-                />
-              </button>
-              <Link
-                to="/contact"
-                style={{
-                  background: "var(--rm-text)",
-                  color: "var(--rm-bg)",
-                  padding: "0.6rem 1.4rem",
-                  borderRadius: 100,
-                  fontSize: "0.8rem",
-                  fontWeight: 600,
-                  textDecoration: "none",
-                  transition: "background 0.25s",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                Contact
-              </Link>
-            </div>
+                >
+                  Contact
+                </Link>
 
-            {/* Mobile burger */}
-            <button
-              className="xl:hidden"
-              onClick={() => setMenuOpen(!menuOpen)}
-              style={{ background: "none", border: "none", cursor: "pointer", color: "var(--rm-text)" }}
-            >
-              {menuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+                {/* Burger Menu (Caché sur Desktop) */}
+                <button
+                  className="xl:hidden"
+                  onClick={() => setMenuOpen(!menuOpen)}
+                  style={{ 
+                    background: "none", 
+                    border: "none", 
+                    cursor: "pointer", 
+                    color: "var(--rm-text)",
+                    display: "flex",
+                    alignItems: "center",
+                    padding: "0 4px"
+                  }}
+                >
+                  {menuOpen ? <X size={24} /> : <Menu size={24} />}
+                </button>
+              </div>
+            </div>
           </nav>
         </div>
 
-        {/* Mobile menu */}
+        {/* Menu Mobile */}
         {menuOpen && (
           <div
             className="xl:hidden"
@@ -328,47 +332,6 @@ export function Layout() {
                 {item.label}
               </Link>
             ))}
-            <div style={{ display: "flex", alignItems: "center", gap: "1rem", paddingTop: "0.75rem" }}>
-              <button
-                onClick={() => setDark(!dark)}
-                style={{
-                  width: 40,
-                  height: 22,
-                  background: dark ? "var(--rm-gold-pale)" : "var(--rm-border)",
-                  borderRadius: 100,
-                  border: "none",
-                  cursor: "pointer",
-                  position: "relative",
-                }}
-              >
-                <span
-                  style={{
-                    position: "absolute",
-                    top: 3,
-                    left: dark ? 21 : 3,
-                    width: 16,
-                    height: 16,
-                    borderRadius: "50%",
-                    background: "var(--rm-gold)",
-                    transition: "left 0.3s",
-                  }}
-                />
-              </button>
-              <Link
-                to="/contact"
-                style={{
-                  background: "var(--rm-text)",
-                  color: "var(--rm-bg)",
-                  padding: "0.6rem 1.4rem",
-                  borderRadius: 100,
-                  fontSize: "0.8rem",
-                  fontWeight: 600,
-                  textDecoration: "none",
-                }}
-              >
-                Contact
-              </Link>
-            </div>
           </div>
         )}
       </header>
@@ -463,12 +426,6 @@ export function Layout() {
                     </Link>
                   </li>
                 ))}
-                <li style={{ marginBottom: "0.75rem" }}>
-                  <span style={{ fontSize: "0.85rem", fontWeight: 300 }}>Mentions légales</span>
-                </li>
-                <li style={{ marginBottom: "0.75rem" }}>
-                  <span style={{ fontSize: "0.85rem", fontWeight: 300 }}>Politique de confidentialité</span>
-                </li>
               </ul>
             </div>
             <div>
