@@ -190,7 +190,7 @@ export function Layout() {
             </div>
 
             <div>
-              <h4 style={{ fontSize: "0.75rem", fontWeight: 600, textTransform: "uppercase", color: "#fff", marginBottom: "1.5rem" }}>Services</h4>
+              <h3 style={{ fontSize: "0.75rem", fontWeight: 600, textTransform: "uppercase", color: "#fff", marginBottom: "1.5rem" }}>Services</h3>
               <ul style={{ listStyle: "none", padding: 0 }}>
                 {serviceItems.map((s) => (
                   <li key={s.path} style={{ marginBottom: "0.75rem" }}><Link to={s.path} style={{ fontSize: "0.85rem", textDecoration: "none", color: "inherit" }}>{s.label}</Link></li>
@@ -199,7 +199,7 @@ export function Layout() {
             </div>
 
             <div>
-              <h4 style={{ fontSize: "0.75rem", fontWeight: 600, textTransform: "uppercase", color: "#fff", marginBottom: "1.5rem" }}>Navigation</h4>
+              <h3 style={{ fontSize: "0.75rem", fontWeight: 600, textTransform: "uppercase", color: "#fff", marginBottom: "1.5rem" }}>Navigation</h3>
               <ul style={{ listStyle: "none", padding: 0 }}>
                 {[{label:"Accueil", path:"/"}, {label:"Tarifs", path:"/tarifs"}, {label:"Contact", path:"/contact"}].map((s) => (
                   <li key={s.path} style={{ marginBottom: "0.75rem" }}><Link to={s.path} style={{ fontSize: "0.85rem", textDecoration: "none", color: "inherit" }}>{s.label}</Link></li>
@@ -208,7 +208,7 @@ export function Layout() {
             </div>
 
             <div>
-              <h4 style={{ fontSize: "0.75rem", fontWeight: 600, textTransform: "uppercase", color: "#fff", marginBottom: "1.5rem" }}>Contact</h4>
+              <h3 style={{ fontSize: "0.75rem", fontWeight: 600, textTransform: "uppercase", color: "#fff", marginBottom: "1.5rem" }}>Contact</h3>
               <p style={{ marginBottom: "0.5rem" }}><a href="mailto:contact.rmwebdesign@gmail.com" style={{ color: "inherit", textDecoration: "none" }}>contact.rmwebdesign@gmail.com</a></p>
               <p style={{ marginBottom: "0.5rem" }}><a href="tel:+33643367837" style={{ color: "inherit", textDecoration: "none" }}>+33 6 43 36 78 37</a></p>
               <p style={{ fontSize: "0.85rem" }}>Lun — Ven : 9h — 18h</p>
@@ -219,7 +219,7 @@ export function Layout() {
             <p style={{ fontSize: "0.9rem", color: "rgba(240,239,232,0.6)", maxWidth: "600px", margin: "0 auto 2.5rem", lineHeight: 1.6, fontWeight: 300 }}>
               Agence digitale spécialisée dans la conception d'expériences web premiums, le SEO et l'intégration d'IA.
             </p>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1.5rem", fontSize: "0.75rem", color: "rgba(240,239,232,0.3)" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1.5rem", fontSize: "0.75rem", color: "rgba(240,239,232,0.7)" }}>
               <div>&copy; 2026 R.M Web Design. Tous droits réservés.</div>
               <div style={{ display: "flex", gap: "2rem" }}>
                 <Link to="/mentions-legales" style={{ color: "inherit", textDecoration: "none" }}>Mentions légales</Link>

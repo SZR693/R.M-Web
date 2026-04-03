@@ -268,7 +268,8 @@ export function Home() {
               {steps.map((s) => (
                 <div key={s.n} style={{ textAlign: "center", position: "relative", zIndex: 1 }}>
                   <div style={{ width: 72, height: 72, border: "1px solid var(--rm-border)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 2rem", background: "var(--rm-card)", fontFamily: "var(--rm-serif)", fontSize: "1.4rem", fontWeight: 600, color: "var(--rm-gold)", boxShadow: "var(--rm-shadow)" }}>{s.n}</div>
-                  <h4 style={{ fontFamily: "var(--rm-serif)", fontSize: "1.15rem", fontWeight: 600, marginBottom: "0.6rem" }}>{s.title}</h4>
+                  {/* 🟢 CORRECTION ICI : Remplacement de <h4> par <h3> */}
+                  <h3 style={{ fontFamily: "var(--rm-serif)", fontSize: "1.15rem", fontWeight: 600, marginBottom: "0.6rem" }}>{s.title}</h3>
                   <p style={{ color: "var(--rm-muted)", fontSize: "0.84rem", lineHeight: 1.75, fontWeight: 300 }}>{s.desc}</p>
                 </div>
               ))}
@@ -287,10 +288,9 @@ export function Home() {
                 src={logoSvg} 
                 alt="R.M Web Design" 
                 style={{ 
-                height: 220, // Taille augmentée comme tu le souhaitais
+                height: 220, 
                 width: "auto", 
                 objectFit: "contain",
-                // Petite lueur dorée pour faire ressortir le logo sur le fond sombre
                 filter: isDarkMode ? "drop-shadow(0 0 20px rgba(162, 119, 67, 0.3))" : "none",
                 transition: "all 0.4s ease-in-out" 
                    }} 
@@ -341,7 +341,7 @@ export function Home() {
             src={logoSvg} 
             alt="R.M Web Design" 
             style={{ 
-            height: 100, // Un peu plus petit pour le bas de page
+            height: 100,
             width: "auto", 
             objectFit: "contain", 
             filter: isDarkMode ? "drop-shadow(0 0 15px rgba(162, 119, 67, 0.2))" : "none",

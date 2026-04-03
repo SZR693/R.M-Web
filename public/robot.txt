@@ -1,5 +1,2 @@
 User-agent: *
 Allow: /
-
-# Optionnel mais recommandé si tu crées un sitemap plus tard
-Sitemap: https://r-m-web.vercel.app/sitemap.xml
