@@ -438,10 +438,10 @@ export function Contact() {
 
                   <div style={{ marginBottom: "2.5rem", display: "flex", flexDirection: "column", alignItems: "center" }}>
                     <Turnstile 
-                      sitekey="0x4AAAAAAC0MfHLC11F3G9HM" 
-                      onVerify={(token) => setCaptchaToken(token)} 
-                      theme="dark"
-                    />
+                    sitekey={import.meta.env.VITE_CLOUDFLARE_TURNSTILE_SITE_KEY} 
+                    onVerify={(token) => setCaptchaToken(token)} 
+                    theme="dark"
+                  />
                     {errors.captcha && <span style={{ ...errorTextStyle, textAlign: "center" }}>{errors.captcha}</span>}
                   </div>
 
