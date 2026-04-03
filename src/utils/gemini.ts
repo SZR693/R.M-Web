@@ -28,7 +28,7 @@ export const getGeminiResponse = async (userMessage: string, history: string, im
     // 🟢 CHANGEMENT MAJEUR : On utilise gemini-1.5-flash (plus stable pour les quotas gratuits)
     // Et on injecte le SYSTEM_PROMPT séparément.
     const model = genAI.getGenerativeModel({ 
-      model: "gemini-1.5-flash",
+      model: "gemini-2.5-flash",
       systemInstruction: SYSTEM_PROMPT, 
     });
 
