@@ -1,45 +1,69 @@
 import { createBrowserRouter } from "react-router";
-import { lazy, Suspense } from "react";
 import { Layout } from "./components/Layout";
-import { Home } from "./pages/Home";
-import { NotFound } from "./pages/NotFound";
-
-// Chargement différé — ces pages ne se chargent que si l'utilisateur les visite
-const CreationWeb            = lazy(() => import("./pages/CreationWeb").then(m => ({ default: m.CreationWeb })));
-const Seo                    = lazy(() => import("./pages/Seo").then(m => ({ default: m.Seo })));
-const Sea                    = lazy(() => import("./pages/Sea").then(m => ({ default: m.Sea })));
-const Sma                    = lazy(() => import("./pages/Sma").then(m => ({ default: m.Sma })));
-const AutomatisationIA       = lazy(() => import("./pages/AutomatisationIA").then(m => ({ default: m.AutomatisationIA })));
-const Integration            = lazy(() => import("./pages/Integration").then(m => ({ default: m.Integration })));
-const Contact                = lazy(() => import("./pages/Contact").then(m => ({ default: m.Contact })));
-const Tarifs                 = lazy(() => import("./pages/Tarifs").then(m => ({ default: m.Tarifs })));
-const MentionsLegales        = lazy(() => import("./pages/MentionsLegales"));
-const PolitiqueConfidentialite = lazy(() => import("./pages/PolitiqueConfidentialite"));
-
-// Wrapper pour Suspense
-const Page = ({ component: Component }: { component: React.ComponentType }) => (
-  <Suspense fallback={<div style={{ background: '#000', minHeight: '100vh' }} />}>
-    <Component />
-  </Suspense>
-);
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: Layout,
     children: [
-      { index: true, Component: Home },
-      { path: "creation-web",                   element: <Page component={CreationWeb} /> },
-      { path: "seo",                             element: <Page component={Seo} /> },
-      { path: "sea",                             element: <Page component={Sea} /> },
-      { path: "sma",                             element: <Page component={Sma} /> },
-      { path: "automatisation-ia",               element: <Page component={AutomatisationIA} /> },
-      { path: "integration",                     element: <Page component={Integration} /> },
-      { path: "mentions-legales",                element: <Page component={MentionsLegales} /> },
-      { path: "politique-de-confidentialite",    element: <Page component={PolitiqueConfidentialite} /> },
-      { path: "tarifs",                          element: <Page component={Tarifs} /> },
-      { path: "contact",                         element: <Page component={Contact} /> },
-      { path: "*",                               Component: NotFound },
+      // Pages en export NOMMÉ (ex: export function Home...)
+      { 
+        index: true, 
+        lazy: async () => { const { Home } = await import("./pages/Home"); return { Component: Home }; } 
+      },
+      { 
+        path: "creation-web", 
+        lazy: async () => { const { CreationWeb } = await import("./pages/CreationWeb"); return { Component: CreationWeb }; } 
+      },
+      { 
+        path: "seo", 
+        lazy: async () => { const { Seo } = await import("./pages/Seo"); return { Component: Seo }; } 
+      },
+      { 
+        path: "sea", 
+        lazy: async () => { const { Sea } = await import("./pages/Sea"); return { Component: Sea }; } 
+      },
+      { 
+        path: "sma", 
+        lazy: async () => { const { Sma } = await import("./pages/Sma"); return { Component: Sma }; } 
+      },
+      { 
+        path: "automatisation-ia", 
+        lazy: async () => { const { AutomatisationIA } = await import("./pages/AutomatisationIA"); return { Component: AutomatisationIA }; } 
+      },
+      { 
+        path: "integration", 
+        lazy: async () => { const { Integration } = await import("./pages/Integration"); return { Component: Integration }; } 
+      },
+      { 
+        path: "contact", 
+        lazy: async () => { const { Contact } = await import("./pages/Contact"); return { Component: Contact }; } 
+      },
+      { 
+        path: "tarifs", 
+        lazy: async () => { const { Tarifs } = await import("./pages/Tarifs"); return { Component: Tarifs }; } 
+      },
+
+      // 🟢 Pages en export DEFAULT (export default function...)
+      { 
+        path: "mentions-legales", 
+        lazy: async () => { 
+          const m = await import("./pages/MentionsLegales"); 
+          return { Component: m.default }; 
+        } 
+      },
+      { 
+        path: "politique-de-confidentialite", 
+        lazy: async () => { 
+          const m = await import("./pages/PolitiqueConfidentialite"); 
+          return { Component: m.default }; 
+        } 
+      },
+
+      { 
+        path: "*", 
+        lazy: async () => { const { NotFound } = await import("./pages/NotFound"); return { Component: NotFound }; } 
+      },
     ],
   },
 ]);
