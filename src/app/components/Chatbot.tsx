@@ -37,6 +37,8 @@ export function Chatbot() {
 
   const handleSend = async () => {
     if ((!input.trim() && !selectedImage) || isLoading) return;
+    if (isLoading) return; 
+    setIsLoading(true)
 
     // Ajouter le message de l'utilisateur à l'interface
     const userMsg = { role: "user", content: input, image: imagePreview || undefined };
