@@ -48,7 +48,7 @@ export function Seo() {
               </div>
               <div style={{ flex: 1, minWidth: 280, color: "var(--rm-muted)", fontSize: "0.95rem", lineHeight: 1.9, fontWeight: 300, marginTop: "1rem" }}>
                 <p style={{ marginBottom: "1.2rem" }}>Contrairement à la publicité payante, le SEO génère un flux constant de visiteurs qualifiés sans coût par clic. C'est un investissement à long terme qui s'apprécie avec le temps.</p>
-                <p>En moyenne, nos clients constatent une augmentation de <strong style={{ fontWeight: 600 }}>+340% de trafic organique</strong> dans les 6 premiers mois de collaboration. Le SEO local est particulièrement efficace pour les commerces et prestataires de services.</p>
+                <p>En moyenne, nos clients constatent une augmentation de <strong style={{ fontWeight: 600 }}>30% à 100% de trafic organique</strong> dans les 6 à 12 premiers mois de collaboration. Le SEO local est particulièrement efficace pour les commerces et prestataires de services local.</p>
                 <div style={{ marginTop: "2rem" }}>
                   <BtnGold to="/contact">Audit SEO gratuit →</BtnGold>
                 </div>
