@@ -16,28 +16,15 @@ export default defineConfig({
   assetsInclude: ['**/*.svg', '**/*.csv'],
 
   build: {
-    // 🟢 Nettoyage du dossier dist avant chaque build
-    emptyOutDir: true,
-    // 🟢 Compression maximale des assets
-    assetsInlineLimit: 4096, // Inline les petits SVG < 4kb pour éviter des requêtes HTTP inutiles
-    
     rollupOptions: {
       output: {
-        // 🟢 Stratégie de spliting avancée pour le cache navigateur
-        manualChunks(id) {
-          // On sépare toutes les grosses bibliothèques externes dans un fichier "vendor"
-          if (id.includes('node_modules')) {
-            if (id.includes('lucide-react')) return 'ui-icons';
-            if (id.includes('framer-motion')) return 'animations';
-            return 'vendor'; 
-          }
+        manualChunks: {
+          // React dans son propre chunk (mis en cache séparément)
+          vendor: ['react', 'react-dom'],
         },
-        // 🟢 On s'assure que les noms de fichiers sont propres pour le cache
-        chunkFileNames: 'assets/js/[name]-[hash].js',
-        entryFileNames: 'assets/js/[name]-[hash].js',
-        assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'
       },
     },
-    chunkSizeWarningLimit: 600, // Augmenté légèrement car Lucide et Framer sont denses
+    // Avertissement si un chunk dépasse 500 KiB
+    chunkSizeWarningLimit: 500,
   },
 })
