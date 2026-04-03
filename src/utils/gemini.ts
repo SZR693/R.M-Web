@@ -3,15 +3,6 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 const apiKey = (import.meta as any).env.VITE_GEMINI_API_KEY || "";
 const genAI = new GoogleGenerativeAI(apiKey);
 
-// 1. On définit l'identité de l'agence (System Instruction)
-const SYSTEM_PROMPT = `
-  Tu es l'assistant de l'agence "R.M Web". Ton ton est luxueux, expert et concis (4-5 lignes max).
-  SERVICES : Starter (Vitrine), Croissance (SEO/Ads), Premium (IA/E-commerce).
-  RÈGLES : Pas de prix (devis sur-mesure), redirige vers le bouton "Contact". 
-  Si image : audit UX rapide (1 top, 2 flops).
-  Termine toujours par une invitation au bouton "Contact". ✨🚀
-`;
-
 async function fileToGenerativePart(file: File) {
   const base64EncodedDataPromise = new Promise((resolve) => {
     const reader = new FileReader();
@@ -25,14 +16,15 @@ async function fileToGenerativePart(file: File) {
 
 export const getGeminiResponse = async (userMessage: string, history: string, imageFile?: File | null) => {
   try {
-    // 🟢 CHANGEMENT MAJEUR : On utilise gemini-1.5-flash (plus stable pour les quotas gratuits)
-    // Et on injecte le SYSTEM_PROMPT séparément.
-    const model = genAI.getGenerativeModel({ 
-      model: "gemini-2.5-flash",
-      systemInstruction: SYSTEM_PROMPT, 
-    });
+    // 🟢 Utilisation de la syntaxe la plus simple possible pour éviter le 404
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-    const promptParts: any[] = [`Voici l'historique : ${history}\n\nClient : ${userMessage || "Analyse mon image."}`];
+    // On remet les instructions dans le prompt mais de façon très courte
+    const instructionCourte = `Tu es l'expert de l'agence R.M Web. Sois luxueux et concis (4 lignes max). Redirige vers "Contact". Si image : fait un mini-audit UX.`;
+
+    const promptText = `${instructionCourte}\n\nHistorique:\n${history}\n\nClient: ${userMessage || "Analyse mon image."}`;
+
+    const promptParts: any[] = [promptText];
     
     if (imageFile) {
       const imagePart = await fileToGenerativePart(imageFile);
@@ -40,11 +32,15 @@ export const getGeminiResponse = async (userMessage: string, history: string, im
     }
 
     const result = await model.generateContent(promptParts);
-    return result.response.text();
+    const response = await result.response;
+    return response.text();
     
   } catch (error: any) {
     console.error("Erreur Gemini :", error.message);
-    if (error.message.includes("429")) return "Je reçois trop de messages ! Attendez 30s et réessayez. ✨";
+    // Si l'erreur 429 revient, on prévient l'utilisateur proprement
+    if (error.message.includes("429")) {
+      return "L'IA est très sollicitée ! Attendez 30 secondes et réessayez. ✨";
+    }
     return "Petit souci technique. Contactez-nous via le bouton Contact !";
   }
 };
