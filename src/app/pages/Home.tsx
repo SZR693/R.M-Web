@@ -167,14 +167,14 @@ export function Home() {
             <div style={{ maxWidth: 700 }}>
               <div style={{ display: "inline-flex", alignItems: "center", gap: 10, fontSize: "0.75rem", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--rm-gold)", marginBottom: "2rem" }}>
                 <span style={{ width: 32, height: 1, background: "var(--rm-gold)", display: "inline-block" }} />
-                Création de Sites Web & Design Digital sur mesure — Lyon
+                Conception de Sites Web & Design Digital sur mesure — Lyon
                 <span style={{ width: 32, height: 1, background: "var(--rm-gold)", display: "inline-block" }} />
               </div>
               <h1 style={{ fontFamily: "var(--rm-serif)", fontSize: "clamp(3rem, 5.5vw, 5.4rem)", fontWeight: 300, lineHeight: 1.08, letterSpacing: "-0.01em", color: "var(--rm-text)", marginBottom: "1.8rem" }}>
                 L'élégance digitale, <br /> <Gold>l'intelligence</Gold> <br /> <Bold>artificielle</Bold> en plus.
               </h1>
               <p style={{ fontSize: "1.05rem", color: "var(--rm-muted)", maxWidth: 520, margin: "0 auto 2.8rem", lineHeight: 1.85, fontWeight: 300 }}>
-                Création de sites web premiums, SEO, SEA, SMA et intégration d'automatisations IA pour propulser votre entreprise vers l'avenir.
+                Conception de sites web premiums, SEO, SEA, SMA et intégration d'automatisations IA pour propulser votre entreprise vers l'avenir.
               </p>
               <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", justifyContent: "center" }}>
                 <BtnGold to="/contact">Démarrer un projet →</BtnGold>
