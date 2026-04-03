@@ -118,11 +118,11 @@ export function Layout() {
               </div>
 
               <div style={{ display: "flex", alignItems: "center", gap: "0.8rem" }}>
-                <button onClick={() => setDark(!dark)} style={{ width: 38, height: 20, background: dark ? "var(--rm-gold-pale)" : "var(--rm-border)", borderRadius: 100, border: "none", cursor: "pointer", position: "relative" }}>
+                <button aria-label="Basculer le mode sombre" onClick={() => setDark(!dark)} style={{ width: 38, height: 20, background: dark ? "var(--rm-gold-pale)" : "var(--rm-border)", borderRadius: 100, border: "none", cursor: "pointer", position: "relative" }}>
                   <span style={{ position: "absolute", top: 2, left: dark ? 20 : 2, width: 16, height: 16, borderRadius: "50%", background: "var(--rm-gold)", transition: "0.3s" }} />
                 </button>
                 <Link to="/contact" style={{ background: "var(--rm-text)", color: "var(--rm-bg)", padding: "0.5rem 1.1rem", borderRadius: 100, fontSize: "0.75rem", fontWeight: 600, textDecoration: "none" }}>Contact</Link>
-                <button className="xl:hidden" onClick={() => setMenuOpen(!menuOpen)} style={{ background: "none", border: "none", color: "var(--rm-text)", cursor: "pointer", padding: "0.5rem" }}>
+                <button aria-label="Ouvrir le menu de navigation" className="xl:hidden" onClick={() => setMenuOpen(!menuOpen)} style={{ background: "none", border: "none", color: "var(--rm-text)", cursor: "pointer", padding: "0.5rem" }}>
                   {menuOpen ? <X size={26} /> : <Menu size={26} />}
                 </button>
               </div>

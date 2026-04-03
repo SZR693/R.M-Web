@@ -38,7 +38,7 @@ export function Chatbot() {
   const handleSend = async () => {
     if ((!input.trim() && !selectedImage) || isLoading) return;
     if (isLoading) return; 
-    setIsLoading(true)
+    setIsLoading(true);
 
     // Ajouter le message de l'utilisateur à l'interface
     const userMsg = { role: "user", content: input, image: imagePreview || undefined };
@@ -66,8 +66,9 @@ export function Chatbot() {
 
   return (
     <div style={{ position: "fixed", bottom: "25px", right: "25px", zIndex: 1000 }}>
-      {/* ... Bouton d'ouverture ... (Garde ton code existant pour le bouton principal) */}
+      {/* 🟢 BOUTON 1 : Bouton principal du Chat */}
       <button 
+        aria-label={isOpen ? "Fermer le chat" : "Ouvrir l'assistant IA"}
         onClick={() => setIsOpen(!isOpen)}
         style={{
           width: "60px", height: "60px", borderRadius: "50%",
@@ -114,7 +115,10 @@ export function Chatbot() {
             <div style={{ padding: "0 1rem", position: "relative" }}>
               <div style={{ position: "relative", display: "inline-block" }}>
                 <img src={imagePreview} alt="Preview" style={{ height: "50px", borderRadius: "4px", border: "1px solid var(--rm-gold)" }} />
+                
+                {/* 🟢 BOUTON 2 : Suppression de l'image */}
                 <button 
+                  aria-label="Supprimer l'image jointe"
                   onClick={() => { setSelectedImage(null); setImagePreview(null); }}
                   style={{ position: "absolute", top: -5, right: -5, background: "red", color: "white", border: "none", borderRadius: "50%", width: "20px", height: "20px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px" }}
                 >
@@ -136,8 +140,9 @@ export function Chatbot() {
                 style={{ display: "none" }} 
               />
               
-              {/* BOUTON POUR UPLOAD */}
+              {/* 🟢 BOUTON 3 : Upload (Trombone) */}
               <button 
+                aria-label="Joindre une image"
                 onClick={() => fileInputRef.current?.click()} 
                 style={{ background: "transparent", border: "none", cursor: "pointer", color: "var(--rm-gold)", padding: "5px" }}
                 title="Joindre une capture de votre site"
@@ -152,7 +157,13 @@ export function Chatbot() {
                 placeholder={selectedImage ? "Ajouter un commentaire..." : "Votre question..."} 
                 style={{ flex: 1, background: "#222", border: "1px solid #333", color: "#fff", padding: "8px", borderRadius: "8px", outline: "none" }}
               />
-              <button onClick={handleSend} style={{ background: "var(--rm-gold)", border: "none", padding: "8px", borderRadius: "8px", cursor: "pointer" }}>
+              
+              {/* 🟢 BOUTON 4 : Envoyer (Avion en papier) */}
+              <button 
+                aria-label="Envoyer le message" 
+                onClick={handleSend} 
+                style={{ background: "var(--rm-gold)", border: "none", padding: "8px", borderRadius: "8px", cursor: "pointer" }}
+              >
                 <Send size={18} color="#000" />
               </button>
             </div>
