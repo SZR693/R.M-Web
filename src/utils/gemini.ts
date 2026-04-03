@@ -1,6 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const apiKey = (import.meta as any).env.VITE_GEMINI_API_KEY || "";
+console.log("Clé détectée :", apiKey ? "OUI ✅" : "NON ❌"); 
 const genAI = new GoogleGenerativeAI(apiKey);
 
 // Fonction helper pour convertir le File en format lisible par l'API Gemini
