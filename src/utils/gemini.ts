@@ -16,15 +16,13 @@ async function fileToGenerativePart(file: File) {
 
 export const getGeminiResponse = async (userMessage: string, history: string, imageFile?: File | null) => {
   try {
-    // 🟢 Utilisation de la syntaxe la plus simple possible pour éviter le 404
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  
+    const model = genAI.getGenerativeModel({ 
+      model: "gemini-2.5-flash",
+      systemInstruction: "Tu es l'expert de l'agence R.M Web Design. Ton ton est luxueux et concis (4 lignes max, utilise  des emojis/puces).Services: Site , SEO, IA, Automatisation. Redirige toujours vers le bouton Contact. Si image: fait un audit UX rapide."
+    });
 
-    // On remet les instructions dans le prompt mais de façon très courte
-    const instructionCourte = `Tu es l'expert de l'agence R.M Web. Sois luxueux et concis (4 lignes max). Redirige vers "Contact". Si image : fait un mini-audit UX.`;
-
-    const promptText = `${instructionCourte}\n\nHistorique:\n${history}\n\nClient: ${userMessage || "Analyse mon image."}`;
-
-    const promptParts: any[] = [promptText];
+    const promptParts: any[] = [`Historique:\n${history}\n\nClient: ${userMessage || "Analyse mon image."}`];
     
     if (imageFile) {
       const imagePart = await fileToGenerativePart(imageFile);
@@ -32,15 +30,12 @@ export const getGeminiResponse = async (userMessage: string, history: string, im
     }
 
     const result = await model.generateContent(promptParts);
-    const response = await result.response;
-    return response.text();
+    return result.response.text();
     
   } catch (error: any) {
     console.error("Erreur Gemini :", error.message);
-    // Si l'erreur 429 revient, on prévient l'utilisateur proprement
-    if (error.message.includes("429")) {
-      return "L'IA est très sollicitée ! Attendez 30 secondes et réessayez. ✨";
-    }
+    // Un petit message plus sympa si on clique trop vite (429)
+    if (error.message.includes("429")) return "Je réfléchis un peu trop vite ☕ ! Attendez une petite minute avant le prochain message.";
     return "Petit souci technique. Contactez-nous via le bouton Contact !";
   }
 };
