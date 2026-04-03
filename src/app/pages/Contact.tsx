@@ -35,6 +35,16 @@ const labelStyle: React.CSSProperties = {
   color: "var(--rm-gold)",
 };
 
+// Style pour les messages d'erreur personnalisés
+const errorTextStyle: React.CSSProperties = {
+  color: "#ff4d4d",
+  fontSize: "0.72rem",
+  marginTop: "0.5rem",
+  display: "block",
+  fontWeight: 400,
+  letterSpacing: "0.02em"
+};
+
 // --- COMPOSANT CUSTOM CHECKBOX ---
 function CustomCheckbox({ name, value, label }: { name: string, value: string, label: string }) {
   const [checked, setChecked] = useState(false);
@@ -92,7 +102,7 @@ function CustomCheckbox({ name, value, label }: { name: string, value: string, l
 }
 
 // --- COMPOSANT CUSTOM SELECT ---
-function CustomSelect({ name, options, placeholder, required }: { name: string, options: {label: string, value: string}[], placeholder: string, required?: boolean }) {
+function CustomSelect({ name, options, placeholder, required, hasError }: { name: string, options: {label: string, value: string}[], placeholder: string, required?: boolean, hasError?: boolean }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState<{label: string, value: string} | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -119,7 +129,7 @@ function CustomSelect({ name, options, placeholder, required }: { name: string, 
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          borderColor: isOpen ? "var(--rm-gold)" : "var(--rm-border)",
+          borderColor: isOpen ? "var(--rm-gold)" : hasError ? "rgba(255, 77, 77, 0.5)" : "var(--rm-border)",
           background: isOpen ? "rgba(162, 119, 67, 0.05)" : "rgba(255, 255, 255, 0.03)",
         }}
       >
@@ -176,22 +186,45 @@ export function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
-  const [captchaToken, setCaptchaToken] = useState<string | null>(null); // ÉTAT CAPTCHA
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  
+  // ÉTAT POUR LES ERREURS DE VALIDATION (Placé au bon endroit)
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setErrors({});
+    setErrorMsg("");
 
-    // SÉCURITÉ : Vérification du captcha
+    const formData = new FormData(e.currentTarget);
+    const newErrors: Record<string, string> = {};
+
+    // --- VALIDATION MANUELLE ---
+    if (!formData.get("prenom")) newErrors.prenom = "Le prénom est requis";
+    if (!formData.get("nom")) newErrors.nom = "Le nom est requis";
+    
+    const email = formData.get("email") as string;
+    if (!email) {
+      newErrors.email = "L'email est requis";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      newErrors.email = "Format d'email invalide";
+    }
+
+    if (!formData.get("pack")) newErrors.pack = "Veuillez sélectionner un pack";
+    if (!formData.get("projet")) newErrors.projet = "Veuillez décrire votre projet";
+    
     if (!captchaToken) {
-      setErrorMsg("Veuillez valider le captcha de sécurité.");
+      newErrors.captcha = "La validation de sécurité est obligatoire";
+    }
+
+    // Blocage si erreurs
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
       return;
     }
 
     setLoading(true);
-    setErrorMsg("");
 
-    const formData = new FormData(e.currentTarget);
-    
     const dataToSave = {
       prenom: formData.get("prenom"),
       nom: formData.get("nom"),
@@ -240,7 +273,6 @@ export function Contact() {
               Parlons de vos objectifs et voyons comment nous pouvons les atteindre ensemble. Réponse garantie sous 24h.
             </p>
             
-            {/* INFOS DE CONTACT SÉCURISÉES */}
             <div style={{ marginBottom: "2rem" }}>
               <div style={{ fontSize: "0.68rem", textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--rm-gold)", fontWeight: 500, marginBottom: "0.4rem" }}>Zone d'intervention</div>
               <div style={{ fontSize: "0.92rem", color: "var(--rm-text)", fontWeight: 400 }}>France entière & International</div>
@@ -272,40 +304,59 @@ export function Contact() {
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} noValidate>
                   {errorMsg && <div style={{ padding: "1rem", marginBottom: "1.5rem", background: "rgba(204,0,0,0.1)", color: "#ff4d4d", borderRadius: 8, fontSize: "0.9rem", border: "1px solid rgba(204,0,0,0.2)" }}>{errorMsg}</div>}
                   
                   {/* Nom + Prénom */}
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }} className="max-sm:!grid-cols-1">
-                    <div style={{ marginBottom: "1.5rem" }}><label style={labelStyle}>Prénom *</label><input type="text" name="prenom" required placeholder="Votre prénom" style={inputStyle} /></div>
-                    <div style={{ marginBottom: "1.5rem" }}><label style={labelStyle}>Nom *</label><input type="text" name="nom" required placeholder="Votre nom" style={inputStyle} /></div>
+                    <div style={{ marginBottom: "1.5rem" }}>
+                      <label style={labelStyle}>Prénom *</label>
+                      <input type="text" name="prenom" placeholder="Votre prénom" style={{ ...inputStyle, borderColor: errors.prenom ? "rgba(255, 77, 77, 0.5)" : "var(--rm-border)" }} />
+                      {errors.prenom && <span style={errorTextStyle}>{errors.prenom}</span>}
+                    </div>
+                    <div style={{ marginBottom: "1.5rem" }}>
+                      <label style={labelStyle}>Nom *</label>
+                      <input type="text" name="nom" placeholder="Votre nom" style={{ ...inputStyle, borderColor: errors.nom ? "rgba(255, 77, 77, 0.5)" : "var(--rm-border)" }} />
+                      {errors.nom && <span style={errorTextStyle}>{errors.nom}</span>}
+                    </div>
                   </div>
 
                   {/* Email + Téléphone */}
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }} className="max-sm:!grid-cols-1">
-                    <div style={{ marginBottom: "1.5rem" }}><label style={labelStyle}>Email *</label><input type="email" name="email" required placeholder="vous@email.fr" style={inputStyle} /></div>
-                    <div style={{ marginBottom: "1.5rem" }}><label style={labelStyle}>Téléphone</label><input type="tel" name="telephone" placeholder="+33 6..." style={inputStyle} /></div>
+                    <div style={{ marginBottom: "1.5rem" }}>
+                      <label style={labelStyle}>Email *</label>
+                      <input type="email" name="email" placeholder="vous@email.fr" style={{ ...inputStyle, borderColor: errors.email ? "rgba(255, 77, 77, 0.5)" : "var(--rm-border)" }} />
+                      {errors.email && <span style={errorTextStyle}>{errors.email}</span>}
+                    </div>
+                    <div style={{ marginBottom: "1.5rem" }}>
+                      <label style={labelStyle}>Téléphone</label>
+                      <input type="tel" name="telephone" placeholder="+33 6..." style={inputStyle} />
+                    </div>
                   </div>
 
                   {/* Entreprise + Site web */}
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }} className="max-sm:!grid-cols-1">
-                    <div style={{ marginBottom: "1.5rem" }}><label style={labelStyle}>Nom de l'entreprise</label><input type="text" name="entreprise" placeholder="Votre entreprise" style={inputStyle} /></div>
-                    <div style={{ marginBottom: "1.5rem" }}><label style={labelStyle}>Site web actuel</label><input type="url" name="site_web" placeholder="https://votre-site.fr" style={inputStyle} /></div>
+                    <div style={{ marginBottom: "1.5rem" }}>
+                      <label style={labelStyle}>Nom de l'entreprise</label>
+                      <input type="text" name="entreprise" placeholder="Votre entreprise" style={inputStyle} />
+                    </div>
+                    <div style={{ marginBottom: "1.5rem" }}>
+                      <label style={labelStyle}>Site web actuel</label>
+                      <input type="url" name="site_web" placeholder="https://votre-site.fr" style={inputStyle} />
+                    </div>
                   </div>
 
-                  {/* Secteur d'activité */}
                   <div style={{ marginBottom: "1.5rem" }}>
                     <label style={labelStyle}>Secteur d'activité</label>
                     <input type="text" name="secteur" placeholder="Ex: Restauration, Immobilier, E-commerce..." style={inputStyle} />
                   </div>
 
-                  {/* Pack souhaité (CustomSelect) */}
                   <div style={{ marginBottom: "1.5rem" }}>
                     <label style={labelStyle}>Pack souhaité *</label>
                     <CustomSelect 
                       name="pack"
-                      required
                       placeholder="Choisissez un pack..."
+                      hasError={!!errors.pack}
                       options={[
                         { label: " Starter — Site Vitrine", value: "starter" },
                         { label: " Croissance Digitale", value: "croissance" },
@@ -313,9 +364,9 @@ export function Contact() {
                         { label: " Besoin de conseils", value: "custom" }
                       ]}
                     />
+                    {errors.pack && <span style={errorTextStyle}>{errors.pack}</span>}
                   </div>
 
-                  {/* Services spécifiques (Cases à cocher) */}
                   <div style={{ marginBottom: "1.5rem" }}>
                     <label style={labelStyle}>Services qui vous intéressent</label>
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.6rem" }} className="max-sm:!grid-cols-1">
@@ -332,7 +383,6 @@ export function Contact() {
                     </div>
                   </div>
 
-                  {/* Budget + Délai (CustomSelect) */}
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }} className="max-sm:!grid-cols-1">
                     <div style={{ marginBottom: "1.5rem" }}>
                       <label style={labelStyle}>Budget estimé</label>
@@ -361,7 +411,6 @@ export function Contact() {
                     </div>
                   </div>
 
-                  {/* Comment nous avez-vous connu (CustomSelect) */}
                   <div style={{ marginBottom: "1.5rem" }}>
                     <label style={labelStyle}>Comment nous avez-vous connu ?</label>
                     <CustomSelect 
@@ -377,45 +426,49 @@ export function Contact() {
                     />
                   </div>
 
-                  {/* Message */}
                   <div style={{ marginBottom: "2rem" }}>
                     <label style={labelStyle}>Décrivez votre projet *</label>
-                    <textarea name="projet" required placeholder="Parlez-nous de votre activité, vos objectifs..." style={{ ...inputStyle, minHeight: 140, resize: "vertical" }} />
+                    <textarea 
+                      name="projet" 
+                      placeholder="Parlez-nous de votre activité, vos objectifs..." 
+                      style={{ ...inputStyle, minHeight: 140, resize: "vertical", borderColor: errors.projet ? "rgba(255, 77, 77, 0.5)" : "var(--rm-border)" }} 
+                    />
+                    {errors.projet && <span style={errorTextStyle}>{errors.projet}</span>}
                   </div>
 
-                  {/* WIDGET CAPTCHA */}
-                  <div style={{ marginBottom: "2.5rem", display: "flex", justifyContent: "center" }}>
+                  <div style={{ marginBottom: "2.5rem", display: "flex", flexDirection: "column", alignItems: "center" }}>
                     <Turnstile 
                       sitekey="0x4AAAAAAC0MfHLC11F3G9HM" 
                       onVerify={(token) => setCaptchaToken(token)} 
                       theme="dark"
                     />
+                    {errors.captcha && <span style={{ ...errorTextStyle, textAlign: "center" }}>{errors.captcha}</span>}
                   </div>
 
                   <button
                     type="submit"
-                    disabled={loading || !captchaToken}
+                    disabled={loading}
                     style={{
                       width: "100%",
                       padding: "1rem",
-                      background: (loading || !captchaToken) ? "rgba(255,255,255,0.05)" : "linear-gradient(135deg, var(--rm-gold), var(--rm-gold-lt))",
-                      color: (loading || !captchaToken) ? "var(--rm-muted)" : "#fff",
+                      background: loading ? "rgba(255,255,255,0.05)" : "linear-gradient(135deg, var(--rm-gold), var(--rm-gold-lt))",
+                      color: loading ? "var(--rm-muted)" : "#fff",
                       border: "none",
                       borderRadius: 100,
                       fontFamily: "var(--rm-sans)",
                       fontSize: "0.9rem",
                       fontWeight: 500,
                       letterSpacing: "0.04em",
-                      cursor: (loading || !captchaToken) ? "not-allowed" : "pointer",
+                      cursor: loading ? "not-allowed" : "pointer",
                       transition: "all 0.25s",
                       marginTop: "0.5rem",
-                      boxShadow: (loading || !captchaToken) ? "none" : "0 4px 24px rgba(156,112,64,0.25)",
+                      boxShadow: loading ? "none" : "0 4px 24px rgba(156,112,64,0.25)",
                       outline: "none",
                     }}
                     onFocus={(e) => !loading && (e.currentTarget.style.boxShadow = "0 0 0 3px rgba(156,112,64,0.3)")}
                     onBlur={(e) => !loading && (e.currentTarget.style.boxShadow = "0 4px 24px rgba(156,112,64,0.25)")}
                     onMouseEnter={(e) => {
-                      if (!loading && captchaToken) {
+                      if (!loading) {
                         e.currentTarget.style.transform = "translateY(-1px)";
                         e.currentTarget.style.boxShadow = "0 6px 28px rgba(156,112,64,0.35)";
                       }
@@ -427,7 +480,7 @@ export function Contact() {
                       }
                     }}
                   >
-                    {loading ? "Envoi en cours..." : !captchaToken ? "Veuillez valider le captcha" : "Envoyer ma demande de devis"}
+                    {loading ? "Envoi en cours..." : "Envoyer ma demande de devis"}
                   </button>
                   <p style={{ textAlign: "center", color: "var(--rm-muted)", fontSize: "0.75rem", fontWeight: 300, marginTop: "1rem" }}>
                     * Champs obligatoires — Réponse sous 24h garantie
