@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { Container, SectionPad, Reveal, SectionEyebrow, SerifTitle, Gold } from "../components/shared";
 import { supabase } from '../../../utils/supabase/client';
 import { ChevronDown } from "lucide-react"; 
+import Turnstile from "react-turnstile"; // AJOUT SÉCURITÉ
+import { SafeEmail, SafePhone } from "../components/ContactSafe"; // AJOUT PROTECTION
 
 // @ts-ignore
 import logoSvg from "../../imports/logo.svg";
@@ -45,7 +47,6 @@ function CustomCheckbox({ name, value, label }: { name: string, value: string, l
       cursor: "pointer", 
       padding: "0.4rem 0" 
     }}>
-      {/* Le vrai input est caché mais Supabase va bien le lire ! */}
       <input 
         type="checkbox" 
         name={name} 
@@ -54,8 +55,6 @@ function CustomCheckbox({ name, value, label }: { name: string, value: string, l
         onChange={(e) => setChecked(e.target.checked)}
         style={{ display: "none" }} 
       />
-      
-      {/* La case stylisée */}
       <div style={{
         width: 20,
         height: 20,
@@ -68,7 +67,6 @@ function CustomCheckbox({ name, value, label }: { name: string, value: string, l
         transition: "all 0.2s ease-in-out",
         boxShadow: checked ? "0 0 10px rgba(162, 119, 67, 0.3)" : "none"
       }}>
-        {/* Le petit "V" de validation */}
         <svg 
           width="12" height="10" viewBox="0 0 12 10" fill="none" 
           style={{ 
@@ -92,6 +90,7 @@ function CustomCheckbox({ name, value, label }: { name: string, value: string, l
     </label>
   );
 }
+
 // --- COMPOSANT CUSTOM SELECT ---
 function CustomSelect({ name, options, placeholder, required }: { name: string, options: {label: string, value: string}[], placeholder: string, required?: boolean }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -177,9 +176,17 @@ export function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null); // ÉTAT CAPTCHA
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // SÉCURITÉ : Vérification du captcha
+    if (!captchaToken) {
+      setErrorMsg("Veuillez valider le captcha de sécurité.");
+      return;
+    }
+
     setLoading(true);
     setErrorMsg("");
 
@@ -232,17 +239,27 @@ export function Contact() {
             <p style={{ color: "var(--rm-muted)", fontSize: "0.92rem", lineHeight: 1.85, fontWeight: 300, margin: "1rem 0 3rem" }}>
               Parlons de vos objectifs et voyons comment nous pouvons les atteindre ensemble. Réponse garantie sous 24h.
             </p>
-            {[
-              { label: "Zone d'intervention", value: "France entière & International" },
-              { label: "Email direct", value: "contact.rmwebdesign@gmail.com" },
-              { label: "Téléphone", value: "+33 6 43 36 78 37" },
-              { label: "Horaires", value: "Lundi — Vendredi : 9h00 – 18h00" },
-            ].map((info) => (
-              <div key={info.label} style={{ marginBottom: "2rem" }}>
-                <div style={{ fontSize: "0.68rem", textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--rm-gold)", fontWeight: 500, marginBottom: "0.4rem" }}>{info.label}</div>
-                <div style={{ fontSize: "0.92rem", color: "var(--rm-text)", fontWeight: 400 }}>{info.value}</div>
-              </div>
-            ))}
+            
+            {/* INFOS DE CONTACT SÉCURISÉES */}
+            <div style={{ marginBottom: "2rem" }}>
+              <div style={{ fontSize: "0.68rem", textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--rm-gold)", fontWeight: 500, marginBottom: "0.4rem" }}>Zone d'intervention</div>
+              <div style={{ fontSize: "0.92rem", color: "var(--rm-text)", fontWeight: 400 }}>France entière & International</div>
+            </div>
+
+            <div style={{ marginBottom: "2rem" }}>
+              <div style={{ fontSize: "0.68rem", textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--rm-gold)", fontWeight: 500, marginBottom: "0.4rem" }}>Email direct</div>
+              <SafeEmail />
+            </div>
+
+            <div style={{ marginBottom: "2rem" }}>
+              <div style={{ fontSize: "0.68rem", textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--rm-gold)", fontWeight: 500, marginBottom: "0.4rem" }}>Téléphone</div>
+              <SafePhone />
+            </div>
+
+            <div style={{ marginBottom: "2rem" }}>
+              <div style={{ fontSize: "0.68rem", textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--rm-gold)", fontWeight: 500, marginBottom: "0.4rem" }}>Horaires</div>
+              <div style={{ fontSize: "0.92rem", color: "var(--rm-text)", fontWeight: 400 }}>Lundi — Vendredi : 9h00 – 18h00</div>
+            </div>
           </Reveal>
 
           <Reveal direction="right">
@@ -299,22 +316,21 @@ export function Contact() {
                   </div>
 
                   {/* Services spécifiques (Cases à cocher) */}
-                 {/* Services spécifiques (Cases à cocher) */}
-                <div style={{ marginBottom: "1.5rem" }}>
-                <label style={labelStyle}>Services qui vous intéressent</label>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.6rem" }} className="max-sm:!grid-cols-1">
-                  {[
-                  "Conception de sites web",
-                  "SEO / Référencement",
-                  "SEA / Google Ads",
-                  "SMA / Réseaux sociaux",
-                  "Automatisation & IA",
-                  "Intégration & API",
-                  ].map((s) => (
-                  <CustomCheckbox key={s} name="services" value={s} label={s} />
-                  ))}
+                  <div style={{ marginBottom: "1.5rem" }}>
+                    <label style={labelStyle}>Services qui vous intéressent</label>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.6rem" }} className="max-sm:!grid-cols-1">
+                      {[
+                        "Conception de sites web",
+                        "SEO / Référencement",
+                        "SEA / Google Ads",
+                        "SMA / Réseaux sociaux",
+                        "Automatisation & IA",
+                        "Intégration & API",
+                      ].map((s) => (
+                        <CustomCheckbox key={s} name="services" value={s} label={s} />
+                      ))}
+                    </div>
                   </div>
-                </div>
 
                   {/* Budget + Délai (CustomSelect) */}
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }} className="max-sm:!grid-cols-1">
@@ -364,33 +380,42 @@ export function Contact() {
                   {/* Message */}
                   <div style={{ marginBottom: "2rem" }}>
                     <label style={labelStyle}>Décrivez votre projet *</label>
-                    <textarea name="projet" required placeholder="Parlez-nous de votre activité, vos objectifs, vos besoins spécifiques..." style={{ ...inputStyle, minHeight: 140, resize: "vertical" }} />
+                    <textarea name="projet" required placeholder="Parlez-nous de votre activité, vos objectifs..." style={{ ...inputStyle, minHeight: 140, resize: "vertical" }} />
+                  </div>
+
+                  {/* WIDGET CAPTCHA */}
+                  <div style={{ marginBottom: "2.5rem", display: "flex", justifyContent: "center" }}>
+                    <Turnstile 
+                      sitekey="0x4AAAAAAC0MfHLC11F3G9HM" 
+                      onVerify={(token) => setCaptchaToken(token)} 
+                      theme="dark"
+                    />
                   </div>
 
                   <button
                     type="submit"
-                    disabled={loading}
+                    disabled={loading || !captchaToken}
                     style={{
                       width: "100%",
                       padding: "1rem",
-                      background: loading ? "var(--rm-muted)" : "linear-gradient(135deg, var(--rm-gold), var(--rm-gold-lt))",
-                      color: loading ? "var(--rm-bg)" : "#fff",
+                      background: (loading || !captchaToken) ? "rgba(255,255,255,0.05)" : "linear-gradient(135deg, var(--rm-gold), var(--rm-gold-lt))",
+                      color: (loading || !captchaToken) ? "var(--rm-muted)" : "#fff",
                       border: "none",
                       borderRadius: 100,
                       fontFamily: "var(--rm-sans)",
                       fontSize: "0.9rem",
                       fontWeight: 500,
                       letterSpacing: "0.04em",
-                      cursor: loading ? "not-allowed" : "pointer",
+                      cursor: (loading || !captchaToken) ? "not-allowed" : "pointer",
                       transition: "all 0.25s",
                       marginTop: "0.5rem",
-                      boxShadow: loading ? "none" : "0 4px 24px rgba(156,112,64,0.25)",
+                      boxShadow: (loading || !captchaToken) ? "none" : "0 4px 24px rgba(156,112,64,0.25)",
                       outline: "none",
                     }}
                     onFocus={(e) => !loading && (e.currentTarget.style.boxShadow = "0 0 0 3px rgba(156,112,64,0.3)")}
                     onBlur={(e) => !loading && (e.currentTarget.style.boxShadow = "0 4px 24px rgba(156,112,64,0.25)")}
                     onMouseEnter={(e) => {
-                      if (!loading) {
+                      if (!loading && captchaToken) {
                         e.currentTarget.style.transform = "translateY(-1px)";
                         e.currentTarget.style.boxShadow = "0 6px 28px rgba(156,112,64,0.35)";
                       }
@@ -402,7 +427,7 @@ export function Contact() {
                       }
                     }}
                   >
-                    {loading ? "Envoi en cours..." : "Envoyer ma demande de devis"}
+                    {loading ? "Envoi en cours..." : !captchaToken ? "Veuillez valider le captcha" : "Envoyer ma demande de devis"}
                   </button>
                   <p style={{ textAlign: "center", color: "var(--rm-muted)", fontSize: "0.75rem", fontWeight: 300, marginTop: "1rem" }}>
                     * Champs obligatoires — Réponse sous 24h garantie
