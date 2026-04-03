@@ -1,10 +1,14 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { Link, Outlet, useLocation } from "react-router";
 import { Menu, X, ChevronDown } from "lucide-react";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/react";
 import { Chatbot } from "./Chatbot";
 
+// @ts-ignore
+import logoSvg from "@/imports/logo.svg";
+
+// 🟢 On charge les outils Vercel en différé (Lazy Loading) pour libérer le processeur
+const Analytics = lazy(() => import("@vercel/analytics/react").then(m => ({ default: m.Analytics })));
+const SpeedInsights = lazy(() => import("@vercel/speed-insights/react").then(m => ({ default: m.SpeedInsights })));
 // @ts-ignore
 import logoSvg from "@/imports/logo.svg";
 
@@ -229,8 +233,9 @@ export function Layout() {
           </div>
         </div>
       </footer>
-      <Analytics />
-      <SpeedInsights />
+        <Analytics />
+        <SpeedInsights />
+      <Suspense/>
       <Chatbot />
     </div>
   );
