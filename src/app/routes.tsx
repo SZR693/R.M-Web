@@ -1,16 +1,20 @@
 import { createBrowserRouter } from "react-router";
 import { Layout } from "./components/Layout";
+// 🟢 On importe la Home normalement pour booster la performance (LCP)
+import { Home } from "./pages/Home";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: Layout,
     children: [
-      // Pages en export NOMMÉ (ex: export function Home...)
+      // 🟢 PAS DE LAZY LOADING ICI : La page d'accueil s'affiche instantanément !
       { 
         index: true, 
-        lazy: async () => { const { Home } = await import("./pages/Home"); return { Component: Home }; } 
+        Component: Home 
       },
+      
+      // 🔵 Pages en export NOMMÉ (chargées en différé)
       { 
         path: "creation-web", 
         lazy: async () => { const { CreationWeb } = await import("./pages/CreationWeb"); return { Component: CreationWeb }; } 
