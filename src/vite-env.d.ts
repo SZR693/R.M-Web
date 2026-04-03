@@ -6,10 +6,10 @@ declare module '*.css' {
 }
 
 interface ImportMetaEnv {
-  readonly VITE_CLOUDFLARE_TURNSTILE_SITE_KEY: string
+  readonly VITE_CLOUDFLARE_TURNSTILE_SITE_KEY: string;
 
 }
 
 interface ImportMeta {
-  readonly env: ImportMetaEnv
+  readonly env: ImportMetaEnv;
 }
