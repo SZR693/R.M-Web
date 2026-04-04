@@ -192,7 +192,7 @@ export function Tarifs() {
               <SerifTitle center>Tout ce que vous voulez <Gold>savoir</Gold></SerifTitle>
             </div>
           </Reveal>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1.5rem", maxWidth: 900, margin: "0 auto" }} className="max-md:!grid-cols-1">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1.5rem", maxWidth: 900, margin: "0 auto", alignItems: "start" }} className="max-md:!grid-cols-1">
             {faqs.map((faq, i) => (
               <Reveal key={i} delay={i * 0.08}>
                 <div style={{ background: "var(--rm-card)", border: "1px solid var(--rm-border)", borderRadius: "var(--rm-r)", padding: "2rem" }}>
