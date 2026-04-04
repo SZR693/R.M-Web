@@ -1,3 +1,4 @@
+import { SEO, schemas } from "../components/SEO";
 import {
   Container,
   SectionPad,
@@ -77,6 +78,11 @@ const faqs = [
 export function Tarifs() {
   return (
     <>
+      <SEO
+        title="Tarifs & Packs — Création Web, SEO, IA | R.M Web Design"
+        description="3 packs adaptés à votre ambition : Site Vitrine, Croissance Digitale et Pack Premium. Devis 100% personnalisé, sans engagement. Réponse sous 24h."
+        canonical="/tarifs"
+      />
       <PageHero
         eyebrow="Tarifs & Packs"
         title={<>Des formules pour <Gold>chaque ambition</Gold></>}

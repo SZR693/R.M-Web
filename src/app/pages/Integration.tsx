@@ -1,3 +1,4 @@
+import { SEO, schemas } from "../components/SEO";
 import { Container, SectionPad, PageHero, Reveal, SectionEyebrow, SerifTitle, Gold, ServiceFeatureList, BtnGold } from "../components/shared";
 
 const integrations = [
@@ -10,6 +11,12 @@ const integrations = [
 export function Integration() {
   return (
     <>
+      <SEO
+        title="Intégration & API — CRM, Paiement, Réservation | R.M Web Design"
+        description="Connectez vos outils CRM, paiement et réservation. Intégrations sur-mesure et API REST pour un écosystème digital unifié."
+        canonical="/integration"
+        schema={schemas.breadcrumb([{ name: "Accueil", url: "/" }, { name: "Intégration", url: "/integration" }])}
+      />
       <PageHero
         eyebrow="Intégration & API"
         title={<>Connectez vos outils pour un écosystème <Gold>unifié</Gold></>}

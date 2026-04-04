@@ -1,3 +1,4 @@
+import { SEO } from "../components/SEO";
 import { useState, useEffect, useRef } from "react";
 import { Container, SectionPad, Reveal, SectionEyebrow, SerifTitle, Gold } from "../components/shared";
 import { supabase } from '../../../utils/supabase/client';
@@ -253,7 +254,13 @@ export function Contact() {
   };
 
   return (
-    <SectionPad style={{ background: "var(--rm-bg)" }}>
+    <>
+      <SEO
+        title="Contact — Démarrez votre projet | R.M Web Design"
+        description="Contactez R.M Web Design pour votre projet web, SEO ou IA. Réponse garantie sous 24h. Devis gratuit et personnalisé pour toute la France."
+        canonical="/contact"
+      />
+      <SectionPad style={{ background: "var(--rm-bg)" }}>
       <Container>
         <div
           style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: "5rem", alignItems: "start" }}
@@ -492,5 +499,6 @@ export function Contact() {
         </div>
       </Container>
     </SectionPad>
+    </>
   );
 }

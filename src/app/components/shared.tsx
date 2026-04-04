@@ -1,12 +1,19 @@
 import { useEffect, useRef, type ReactNode, type CSSProperties } from "react";
 import { Link } from "react-router";
 
-// Reveal animation hook
+// Reveal animation - démarre visible si JS tardif (CSS fallback)
 export function useReveal() {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    // Si déjà visible (ex: above fold), reveal immédiatement
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight) {
+      el.style.opacity = "1";
+      el.style.transform = "none";
+      return;
+    }
     const obs = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -23,9 +30,24 @@ export function useReveal() {
   return ref;
 }
 
-export function Reveal({ children, direction = "up", delay = 0, style }: { children: ReactNode; direction?: "up" | "left" | "right"; delay?: number; style?: CSSProperties }) {
+export function Reveal({
+  children,
+  direction = "up",
+  delay = 0,
+  style,
+}: {
+  children: ReactNode;
+  direction?: "up" | "left" | "right";
+  delay?: number;
+  style?: CSSProperties;
+}) {
   const ref = useReveal();
-  const transform = direction === "left" ? "translateX(-28px)" : direction === "right" ? "translateX(28px)" : "translateY(28px)";
+  const transform =
+    direction === "left"
+      ? "translateX(-28px)"
+      : direction === "right"
+      ? "translateX(28px)"
+      : "translateY(28px)";
   return (
     <div
       ref={ref}
@@ -41,7 +63,13 @@ export function Reveal({ children, direction = "up", delay = 0, style }: { child
   );
 }
 
-export function SectionEyebrow({ children, center }: { children: ReactNode; center?: boolean }) {
+export function SectionEyebrow({
+  children,
+  center,
+}: {
+  children: ReactNode;
+  center?: boolean;
+}) {
   return (
     <div
       style={{
@@ -57,13 +85,24 @@ export function SectionEyebrow({ children, center }: { children: ReactNode; cent
         justifyContent: center ? "center" : undefined,
       }}
     >
-      <span style={{ width: 24, height: 1, background: "var(--rm-gold)", display: "inline-block" }} />
+      <span
+        aria-hidden="true"
+        style={{ width: 24, height: 1, background: "var(--rm-gold)", display: "inline-block" }}
+      />
       {children}
     </div>
   );
 }
 
-export function SerifTitle({ children, center, style }: { children: ReactNode; center?: boolean; style?: CSSProperties }) {
+export function SerifTitle({
+  children,
+  center,
+  style,
+}: {
+  children: ReactNode;
+  center?: boolean;
+  style?: CSSProperties;
+}) {
   return (
     <h2
       style={{
@@ -90,35 +129,81 @@ export function Bold({ children }: { children: ReactNode }) {
   return <strong style={{ fontWeight: 600 }}>{children}</strong>;
 }
 
-export function Container({ children, style }: { children: ReactNode; style?: CSSProperties }) {
-  return <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 6%", ...style }}>{children}</div>;
+export function Container({
+  children,
+  style,
+}: {
+  children: ReactNode;
+  style?: CSSProperties;
+}) {
+  return (
+    <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 6%", ...style }}>
+      {children}
+    </div>
+  );
 }
 
-export function SectionPad({ children, style }: { children: ReactNode; style?: CSSProperties }) {
-  return <section className="rm-section-pad" style={{ padding: "110px 0", ...style }}>{children}</section>;
+export function SectionPad({
+  children,
+  style,
+}: {
+  children: ReactNode;
+  style?: CSSProperties;
+}) {
+  return (
+    <section
+      className="rm-section-pad"
+      style={{ padding: "110px 0", ...style }}
+    >
+      {children}
+    </section>
+  );
 }
 
-export function BtnGold({ children, to }: { children: ReactNode; to?: string }) {
+export function BtnGold({
+  children,
+  to,
+  onClick,
+  type,
+  disabled,
+  style,
+}: {
+  children: ReactNode;
+  to?: string;
+  onClick?: () => void;
+  type?: "button" | "submit";
+  disabled?: boolean;
+  style?: CSSProperties;
+}) {
+  const baseStyle: CSSProperties = {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 8,
+    padding: "0.9rem 2rem",
+    fontFamily: "var(--rm-sans)",
+    fontWeight: 500,
+    fontSize: "0.88rem",
+    letterSpacing: "0.04em",
+    borderRadius: 100,
+    background: disabled
+      ? "rgba(255,255,255,0.05)"
+      : "linear-gradient(135deg, var(--rm-gold), var(--rm-gold-lt))",
+    color: disabled ? "var(--rm-muted)" : "#fff",
+    boxShadow: disabled ? "none" : "0 4px 24px rgba(156,112,64,0.28)",
+    textDecoration: "none",
+    transition: "all 0.28s",
+    cursor: disabled ? "not-allowed" : "pointer",
+    border: "none",
+    outline: "none",
+    ...style,
+  };
+
   if (to) {
     return (
       <Link
         to={to}
-        style={{
-          display: "inline-flex",
-          alignItems: "center",
-          gap: 8,
-          padding: "0.9rem 2rem",
-          fontFamily: "var(--rm-sans)",
-          fontWeight: 500,
-          fontSize: "0.88rem",
-          letterSpacing: "0.04em",
-          borderRadius: 100,
-          background: "linear-gradient(135deg, var(--rm-gold), var(--rm-gold-lt))",
-          color: "#fff",
-          boxShadow: "0 4px 24px rgba(156,112,64,0.28)",
-          textDecoration: "none",
-          transition: "all 0.28s",
-        }}
+        style={baseStyle}
+        className="btn-gold-focus"
       >
         {children}
       </Link>
@@ -126,51 +211,45 @@ export function BtnGold({ children, to }: { children: ReactNode; to?: string }) 
   }
   return (
     <button
-      style={{
-        display: "inline-flex",
-        alignItems: "center",
-        gap: 8,
-        padding: "0.9rem 2rem",
-        fontFamily: "var(--rm-sans)",
-        fontWeight: 500,
-        fontSize: "0.88rem",
-        letterSpacing: "0.04em",
-        borderRadius: 100,
-        background: "linear-gradient(135deg, var(--rm-gold), var(--rm-gold-lt))",
-        color: "#fff",
-        boxShadow: "0 4px 24px rgba(156,112,64,0.28)",
-        border: "none",
-        cursor: "pointer",
-        transition: "all 0.28s",
-      }}
+      type={type || "button"}
+      disabled={disabled}
+      onClick={onClick}
+      style={baseStyle}
+      className="btn-gold-focus"
     >
       {children}
     </button>
   );
 }
 
-export function BtnGhost({ children, to }: { children: ReactNode; to?: string }) {
+export function BtnGhost({
+  children,
+  to,
+}: {
+  children: ReactNode;
+  to?: string;
+}) {
+  const baseStyle: CSSProperties = {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 8,
+    padding: "0.9rem 2rem",
+    fontFamily: "var(--rm-sans)",
+    fontWeight: 500,
+    fontSize: "0.88rem",
+    letterSpacing: "0.04em",
+    borderRadius: 100,
+    background: "transparent",
+    color: "var(--rm-text)",
+    border: "1px solid var(--rm-border)",
+    textDecoration: "none",
+    transition: "all 0.28s",
+    outline: "none",
+  };
+
   if (to) {
     return (
-      <Link
-        to={to}
-        style={{
-          display: "inline-flex",
-          alignItems: "center",
-          gap: 8,
-          padding: "0.9rem 2rem",
-          fontFamily: "var(--rm-sans)",
-          fontWeight: 500,
-          fontSize: "0.88rem",
-          letterSpacing: "0.04em",
-          borderRadius: 100,
-          background: "transparent",
-          color: "var(--rm-text)",
-          border: "1px solid var(--rm-border)",
-          textDecoration: "none",
-          transition: "all 0.28s",
-        }}
-      >
+      <Link to={to} style={baseStyle} className="btn-ghost-focus">
         {children}
       </Link>
     );
@@ -178,7 +257,13 @@ export function BtnGhost({ children, to }: { children: ReactNode; to?: string })
   return null;
 }
 
-export function ServiceFeatureList({ items, grow }: { items: string[]; grow?: boolean }) {
+export function ServiceFeatureList({
+  items,
+  grow,
+}: {
+  items: string[];
+  grow?: boolean;
+}) {
   return (
     <ul
       style={{
@@ -186,7 +271,13 @@ export function ServiceFeatureList({ items, grow }: { items: string[]; grow?: bo
         padding: 0,
         margin: 0,
         ...(grow
-          ? { display: "flex", flexDirection: "column", justifyContent: "space-between", flex: 1, height: "100%" }
+          ? {
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              flex: 1,
+              height: "100%",
+            }
           : {}),
       }}
     >
@@ -204,7 +295,16 @@ export function ServiceFeatureList({ items, grow }: { items: string[]; grow?: bo
             fontWeight: 300,
           }}
         >
-          <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--rm-gold)", flexShrink: 0 }} />
+          <span
+            aria-hidden="true"
+            style={{
+              width: 6,
+              height: 6,
+              borderRadius: "50%",
+              background: "var(--rm-gold)",
+              flexShrink: 0,
+            }}
+          />
           {item}
         </li>
       ))}
@@ -212,7 +312,15 @@ export function ServiceFeatureList({ items, grow }: { items: string[]; grow?: bo
   );
 }
 
-export function PageHero({ eyebrow, title, description }: { eyebrow: string; title: ReactNode; description: string }) {
+export function PageHero({
+  eyebrow,
+  title,
+  description,
+}: {
+  eyebrow: string;
+  title: ReactNode;
+  description: string;
+}) {
   return (
     <section
       style={{
@@ -225,6 +333,7 @@ export function PageHero({ eyebrow, title, description }: { eyebrow: string; tit
       }}
     >
       <div
+        aria-hidden="true"
         style={{
           position: "absolute",
           inset: 0,
@@ -233,6 +342,7 @@ export function PageHero({ eyebrow, title, description }: { eyebrow: string; tit
         }}
       />
       <div
+        aria-hidden="true"
         style={{
           position: "absolute",
           inset: 0,
@@ -244,10 +354,14 @@ export function PageHero({ eyebrow, title, description }: { eyebrow: string; tit
           WebkitMaskImage: "radial-gradient(ellipse at 70% 40%, black 10%, transparent 65%)",
         }}
       />
-      <Container style={{ position: "relative", zIndex: 2, width: "100%", paddingTop: "4rem", paddingBottom: "4rem" }}>
+      <Container
+        style={{ position: "relative", zIndex: 2, width: "100%", paddingTop: "4rem", paddingBottom: "4rem" }}
+      >
         <Reveal>
           <SectionEyebrow>{eyebrow}</SectionEyebrow>
-          <SerifTitle style={{ fontSize: "clamp(2.8rem, 5vw, 4.5rem)", marginBottom: "1.5rem" }}>{title}</SerifTitle>
+          <SerifTitle style={{ fontSize: "clamp(2.8rem, 5vw, 4.5rem)", marginBottom: "1.5rem" }}>
+            {title}
+          </SerifTitle>
           <p style={{ fontSize: "1.05rem", color: "var(--rm-muted)", maxWidth: 620, lineHeight: 1.85, fontWeight: 300 }}>
             {description}
           </p>

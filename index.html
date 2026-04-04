@@ -4,34 +4,84 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>R.M Web Design | Conception de Sites Web & Design Digital sur mesure</title>
+    <!-- Titre et description par défaut (écrasés par le composant SEO sur chaque page) -->
+    <title>R.M Web Design | Création de Sites Web & Design Digital sur mesure</title>
+    <meta name="description" content="Agence web à Lyon spécialisée en création de sites web premium, SEO, SEA, SMA et automatisation IA. Design sur-mesure, performance et résultats mesurables." />
 
-    <meta name="description" content="R.M-Web : Experts en création de sites web sur mesure, design digital et solutions IA. Propulsez votre activité avec une identité en ligne élégante et performante.">
-
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <meta property="og:title" content="R.M-Web | L'élégance digitale au service de votre ambition">
-    <meta property="og:description" content="Experts en création de sites web sur mesure, design digital et solutions IA.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://r-m-web.vercel.app">
-    <meta property="og:image" content="https://r-m-web.vercel.app/favicon.png">
+    <!-- Open Graph -->
+    <meta property="og:title" content="R.M Web Design | L'élégance digitale au service de votre ambition" />
+    <meta property="og:description" content="Agence web spécialisée en création de sites web premium, SEO et solutions IA." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://r-m-web-design.vercel.app" />
+    <meta property="og:image" content="https://r-m-web-design.vercel.app/favicon.svg" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="R.M Web Design" />
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="R.M Web | Création de Sites Web">
-    <meta name="twitter:description" content="Propulsez votre activité avec une identité en ligne élégante et performante.">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="R.M Web Design | Création de Sites Web Premium" />
+    <meta name="twitter:description" content="Agence web spécialisée en création de sites web premium, SEO et solutions IA." />
+    <meta name="twitter:image" content="https://r-m-web-design.vercel.app/favicon.svg" />
+
+    <!-- Google Search Console -->
     <meta name="google-site-verification" content="O7lR9Hs6qjW_Vwdu3h4f6Ob7kFttD6h01I0CNM58Yu8" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Thème couleur pour mobile -->
+    <meta name="theme-color" content="#0f0e0c" />
 
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'" />
+    <!-- Preconnect Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Fonts : chargement non-bloquant -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
     <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" />
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap"
+      />
     </noscript>
 
+    <!-- Schema.org global de l'agence -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "R.M Web Design",
+      "description": "Agence digitale spécialisée en création de sites web premium, SEO, SEA, SMA et automatisation IA.",
+      "url": "https://r-m-web-design.vercel.app",
+      "email": "contact.rmwebdesign@gmail.com",
+      "telephone": "+33643367837",
+      "areaServed": "FR",
+      "priceRange": "€€",
+      "openingHours": "Mo-Fr 09:00-18:00",
+      "serviceType": ["Web Design", "SEO", "SEA", "Social Media Advertising", "AI Automation"]
+    }
+    </script>
+
+    <!-- Style critique inline (évite le flash blanc/noir au chargement) -->
     <style>
-      html, body { background-color: #000; margin: 0; padding: 0; }
+      html, body {
+        background-color: #fafaf8;
+        margin: 0;
+        padding: 0;
+      }
+      @media (prefers-color-scheme: dark) {
+        html, body { background-color: #111110; }
+      }
     </style>
   </head>
 

@@ -1,3 +1,4 @@
+import { SEO, schemas } from "../components/SEO";
 import { Container, SectionPad, PageHero, Reveal, SectionEyebrow, SerifTitle, Gold, ServiceFeatureList, BtnGold } from "../components/shared";
 
 const services = [
@@ -10,6 +11,12 @@ const services = [
 export function Sea() {
   return (
     <>
+      <SEO
+        title="Publicité SEA — Google Ads & Bing Ads | R.M Web Design"
+        description="Campagnes Google Ads et Bing Ads gérées par des experts. ROI maximal, landing pages optimisées et reporting mensuel."
+        canonical="/sea"
+        schema={schemas.breadcrumb([{ name: "Accueil", url: "/" }, { name: "SEA", url: "/sea" }])}
+      />
       <PageHero
         eyebrow="Publicité SEA"
         title={<>Des résultats <Gold>immédiats</Gold> avec la publicité en ligne</>}

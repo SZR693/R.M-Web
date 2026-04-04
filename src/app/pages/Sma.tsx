@@ -1,3 +1,4 @@
+import { SEO, schemas } from "../components/SEO";
 import { Container, SectionPad, PageHero, Reveal, SectionEyebrow, SerifTitle, Gold, ServiceFeatureList, BtnGold } from "../components/shared";
 
 const platforms = [
@@ -10,6 +11,12 @@ const platforms = [
 export function Sma() {
   return (
     <>
+      <SEO
+        title="Social Media Ads — Facebook, Instagram, LinkedIn | R.M Web Design"
+        description="Publicités sociales sur Facebook, Instagram, LinkedIn et TikTok. Ciblage avancé, création de visuels et A/B testing."
+        canonical="/sma"
+        schema={schemas.breadcrumb([{ name: "Accueil", url: "/" }, { name: "SMA", url: "/sma" }])}
+      />
       <PageHero
         eyebrow="Social Media Ads"
         title={<>Publicités <Gold>sociales</Gold> qui convertissent</>}

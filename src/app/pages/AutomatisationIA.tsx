@@ -1,3 +1,4 @@
+import { SEO, schemas } from "../components/SEO";
 import { Container, SectionPad, PageHero, Reveal, SectionEyebrow, SerifTitle, Gold, ServiceFeatureList, BtnGold } from "../components/shared";
 
 const solutions = [
@@ -10,6 +11,12 @@ const solutions = [
 export function AutomatisationIA() {
   return (
     <>
+      <SEO
+        title="Automatisation & Intelligence Artificielle | R.M Web Design"
+        description="Chatbots IA, automatisation de processus et agents intelligents pour booster votre productivité et réduire les coûts."
+        canonical="/automatisation-ia"
+        schema={schemas.breadcrumb([{ name: "Accueil", url: "/" }, { name: "IA & Automatisation", url: "/automatisation-ia" }])}
+      />
       <PageHero
         eyebrow="IA & Automatisation"
         title={<>L'<Gold>intelligence artificielle</Gold> au service de votre croissance</>}
