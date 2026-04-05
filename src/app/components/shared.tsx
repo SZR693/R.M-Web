@@ -129,7 +129,6 @@ export function Bold({ children }: { children: ReactNode }) {
   return <strong style={{ fontWeight: 600 }}>{children}</strong>;
 }
 
-// 🟢 LE COMPOSANT CONTAINER CORRIGÉ
 export function Container({
   children,
   style,
@@ -138,16 +137,7 @@ export function Container({
   style?: CSSProperties;
 }) {
   return (
-    <div 
-      style={{ 
-        width: "100%", 
-        maxWidth: 1200, 
-        margin: "0 auto", 
-        padding: "0 6%", 
-        boxSizing: "border-box", // <-- La correction vitale est ici
-        ...style 
-      }}
-    >
+    <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 6%", ...style }}>
       {children}
     </div>
   );

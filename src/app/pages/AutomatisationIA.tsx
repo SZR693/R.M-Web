@@ -12,14 +12,14 @@ export function AutomatisationIA() {
   return (
     <>
       <SEO
-        title="Automatisation & Intelligence Artificielle | R.M Web Design"
-        description="Chatbots IA, automatisation de processus et agents intelligents pour booster votre productivité et réduire les coûts."
+        title="Automatisation IA Lyon — Chatbots & Intelligence Artificielle | R.M Web Design"
+        description="Agence IA et automatisation à Lyon. Chatbots intelligents, workflows automatisés et agents IA pour les entreprises lyonnaises. Gagnez du temps et réduisez vos coûts."
         canonical="/automatisation-ia"
-        schema={schemas.breadcrumb([{ name: "Accueil", url: "/" }, { name: "IA & Automatisation", url: "/automatisation-ia" }])}
+        schema={schemas.breadcrumb([{ name: "Accueil", url: "/" }, { name: "IA Lyon", url: "/automatisation-ia" }])}
       />
       <PageHero
-        eyebrow="IA & Automatisation"
-        title={<>L'<Gold>intelligence artificielle</Gold> au service de votre croissance</>}
+        eyebrow="IA & Automatisation Lyon"
+        title={<>IA & Automatisation <Gold>Lyon</Gold> — Boostez votre productivité</>}
         description="Automatisez vos tâches chronophages, créez des chatbots intelligents et exploitez la puissance de l'IA pour gagner en productivité et en efficacité."
       />
 

@@ -12,14 +12,14 @@ export function Integration() {
   return (
     <>
       <SEO
-        title="Intégration & API — CRM, Paiement, Réservation | R.M Web Design"
-        description="Connectez vos outils CRM, paiement et réservation. Intégrations sur-mesure et API REST pour un écosystème digital unifié."
+        title="Intégration & API Lyon — CRM, Paiement, Réservation | R.M Web Design"
+        description="Agence intégration digitale à Lyon. Connexion CRM, paiement en ligne, réservation et API sur-mesure pour les entreprises lyonnaises."
         canonical="/integration"
-        schema={schemas.breadcrumb([{ name: "Accueil", url: "/" }, { name: "Intégration", url: "/integration" }])}
+        schema={schemas.breadcrumb([{ name: "Accueil", url: "/" }, { name: "Intégration Lyon", url: "/integration" }])}
       />
       <PageHero
-        eyebrow="Intégration & API"
-        title={<>Connectez vos outils pour un écosystème <Gold>unifié</Gold></>}
+        eyebrow="Intégration & API Lyon"
+        title={<>Intégration <Gold>Lyon</Gold> — Connectez tous vos outils</>}
         description="Nous relions vos outils existants — CRM, paiement, réservation, facturation — pour créer un écosystème digital fluide et automatisé."
       />
 

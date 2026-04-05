@@ -12,14 +12,14 @@ export function Sea() {
   return (
     <>
       <SEO
-        title="Publicité SEA — Google Ads & Bing Ads | R.M Web Design"
-        description="Campagnes Google Ads et Bing Ads gérées par des experts. ROI maximal, landing pages optimisées et reporting mensuel."
+        title="SEA Lyon — Google Ads & Publicité en Ligne | R.M Web Design"
+        description="Agence SEA à Lyon. Campagnes Google Ads et Bing Ads gérées par des experts lyonnais. ROI maximal, landing pages optimisées et reporting mensuel."
         canonical="/sea"
-        schema={schemas.breadcrumb([{ name: "Accueil", url: "/" }, { name: "SEA", url: "/sea" }])}
+        schema={schemas.breadcrumb([{ name: "Accueil", url: "/" }, { name: "SEA Lyon", url: "/sea" }])}
       />
       <PageHero
-        eyebrow="Publicité SEA"
-        title={<>Des résultats <Gold>immédiats</Gold> avec la publicité en ligne</>}
+        eyebrow="Publicité SEA Lyon"
+        title={<>Agence SEA <Gold>Lyon</Gold> — Résultats immédiats</>}
         description="Campagnes Google Ads & Bing Ads optimisées pour générer des leads qualifiés et un retour sur investissement maximal dès les premières semaines."
       />
 

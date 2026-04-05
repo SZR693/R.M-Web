@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { SEO, schemas } from "../components/SEO";
 import {
   Container,
@@ -79,13 +80,13 @@ export function Tarifs() {
   return (
     <>
       <SEO
-        title="Tarifs & Packs — Création Web, SEO, IA | R.M Web Design"
-        description="3 packs adaptés à votre ambition : Site Vitrine, Croissance Digitale et Pack Premium. Devis 100% personnalisé, sans engagement. Réponse sous 24h."
+        title="Tarifs Agence Web Lyon — Création Site, SEO, IA | R.M Web Design"
+        description="Tarifs agence web Lyon. 3 packs : Site Vitrine Lyon, Croissance Digitale et Pack Premium. Devis 100% personnalisé et gratuit pour votre projet web à Lyon."
         canonical="/tarifs"
       />
       <PageHero
-        eyebrow="Tarifs & Packs"
-        title={<>Des formules pour <Gold>chaque ambition</Gold></>}
+        eyebrow="Tarifs Agence Web Lyon"
+        title={<>Tarifs agence web <Gold>Lyon</Gold> — Formules sur-mesure</>}
         description="Trois packs conçus pour évoluer avec vous. Chaque devis est 100 % personnalisé selon vos objectifs, votre secteur et votre budget — sans mauvaise surprise."
       />
 
@@ -105,7 +106,7 @@ export function Tarifs() {
           </Reveal>
 
           {/* Cards grid — alignItems stretch so all rows are same height */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "1.8rem", alignItems: "stretch" }} className="max-lg:!grid-cols-1">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.8rem", alignItems: "stretch" }} className="max-lg:!grid-cols-1">
             {packs.map((pack, i) => (
               <Reveal key={pack.title} delay={i * 0.12} style={{ display: "flex", flexDirection: "column" }}>
                 <div
@@ -192,22 +193,41 @@ export function Tarifs() {
               <SerifTitle center>Tout ce que vous voulez <Gold>savoir</Gold></SerifTitle>
             </div>
           </Reveal>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1.5rem", maxWidth: 900, margin: "0 auto", alignItems: "start" }} className="max-md:!grid-cols-1">
-            {faqs.map((faq, i) => (
-              <Reveal key={i} delay={i * 0.08}>
-                <div style={{ background: "var(--rm-card)", border: "1px solid var(--rm-border)", borderRadius: "var(--rm-r)", padding: "2rem" }}>
-                  <h4 style={{ fontFamily: "var(--rm-serif)", fontSize: "1.1rem", fontWeight: 600, color: "var(--rm-text)", marginBottom: "0.75rem" }}>
-                    {faq.q}
-                  </h4>
-                  <p style={{ fontSize: "0.88rem", color: "var(--rm-muted)", lineHeight: 1.8, fontWeight: 300 }}>
-                    {faq.a}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal>
+            <FaqAccordion items={faqs} />
+          </Reveal>
         </Container>
       </SectionPad>
     </>
+  );
+}
+
+function FaqAccordion({ items }: { items: { q: string; a: string }[] }) {
+  const [open, setOpen] = useState<number | null>(null);
+  return (
+    <div style={{ maxWidth: 780, margin: "0 auto" }}>
+      {items.map((item, i) => (
+        <div key={i} style={{ borderBottom: "1px solid var(--rm-border)", ...(i === 0 ? { borderTop: "1px solid var(--rm-border)" } : {}) }}>
+          <h3 style={{ margin: 0 }}>
+            <button
+              onClick={() => setOpen(open === i ? null : i)}
+              aria-expanded={open === i}
+              aria-controls={`faq-answer-${i}`}
+              id={`faq-question-${i}`}
+              className="faq-btn"
+              style={{ width: "100%", background: "none", border: "none", cursor: "pointer", padding: "1.6rem 0", display: "flex", justifyContent: "space-between", alignItems: "center", fontFamily: "var(--rm-sans)", fontSize: "1rem", fontWeight: 500, color: "var(--rm-text)", textAlign: "left", gap: "1rem", outline: "none" }}
+            >
+              {item.q}
+              <div aria-hidden="true" style={{ width: 28, height: 28, flexShrink: 0, border: `1px solid ${open === i ? "var(--rm-gold)" : "var(--rm-border)"}`, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", background: open === i ? "var(--rm-gold)" : "transparent", transition: "all 0.3s", color: open === i ? "#fff" : "var(--rm-gold)", fontSize: "1.2rem", lineHeight: 1 }}>
+                {open === i ? "−" : "+"}
+              </div>
+            </button>
+          </h3>
+          <div id={`faq-answer-${i}`} role="region" aria-labelledby={`faq-question-${i}`} style={{ maxHeight: open === i ? 200 : 0, overflow: "hidden", transition: "max-height 0.4s ease" }}>
+            <p style={{ paddingBottom: "1.5rem", color: "var(--rm-muted)", fontSize: "0.9rem", lineHeight: 1.85, fontWeight: 300 }}>{item.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
   );
 }

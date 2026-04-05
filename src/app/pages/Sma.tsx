@@ -12,14 +12,14 @@ export function Sma() {
   return (
     <>
       <SEO
-        title="Social Media Ads — Facebook, Instagram, LinkedIn | R.M Web Design"
-        description="Publicités sociales sur Facebook, Instagram, LinkedIn et TikTok. Ciblage avancé, création de visuels et A/B testing."
+        title="Social Media Ads Lyon — Facebook, Instagram, LinkedIn | R.M Web Design"
+        description="Agence Social Media Ads à Lyon. Publicités Facebook, Instagram, LinkedIn et TikTok pour les entreprises lyonnaises. Ciblage avancé et ROI mesurable."
         canonical="/sma"
-        schema={schemas.breadcrumb([{ name: "Accueil", url: "/" }, { name: "SMA", url: "/sma" }])}
+        schema={schemas.breadcrumb([{ name: "Accueil", url: "/" }, { name: "SMA Lyon", url: "/sma" }])}
       />
       <PageHero
-        eyebrow="Social Media Ads"
-        title={<>Publicités <Gold>sociales</Gold> qui convertissent</>}
+        eyebrow="Social Media Ads Lyon"
+        title={<>Agence SMA <Gold>Lyon</Gold> — Publicités sociales qui convertissent</>}
         description="Stratégies publicitaires sur Facebook, Instagram, LinkedIn et TikTok pour toucher votre audience cible et générer des résultats concrets."
       />
 
