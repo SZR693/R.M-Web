@@ -35,7 +35,7 @@ const steps = [
 ];
 
 const faqs = [
-  { q: "Combien de temps faut-il pour créer un site web à Lyon ?", a: "Pour un site vitrine classique, comptez entre 2 et 4 semaines. Pour un e-commerce ou un projet intégrant de l'IA, le délai moyen est de 6 à 8 semaines." },
+  { q: "Combien de temps faut-il pour créer un site web à Lyon ?", a: "Pour un site vitrine classique, comptez entre 1 et 2 semaines. Pour un e-commerce ou un projet intégrant de l'IA, le délai moyen est de 4 à 6 semaines." },
   { q: "Qu'est-ce que le SEO Local à Lyon concrètement ?", a: "Le SEO local permet à votre entreprise lyonnaise d'apparaître dans les premiers résultats de Google lorsqu'un client cherche vos services à Lyon et dans la métropole." },
   { q: "Comment l'IA peut-elle aider mon entreprise à Lyon ?", a: "L'IA vous fait gagner du temps : chatbot 24h/24, automatisation de la prise de rendez-vous, liaison formulaires/facturation sans intervention humaine." },
   { q: "Quelle est la différence entre SEO et SEA ?", a: "Le SEO est le référencement naturel (gratuit, long terme) tandis que le SEA concerne la publicité payante sur les moteurs de recherche (résultats immédiats)." },
