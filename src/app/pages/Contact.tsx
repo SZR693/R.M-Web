@@ -282,7 +282,7 @@ export function Contact() {
             
             <div style={{ marginBottom: "2rem" }}>
               <div style={{ fontSize: "0.68rem", textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--rm-gold)", fontWeight: 500, marginBottom: "0.4rem" }}>Zone d'intervention</div>
-              <div style={{ fontSize: "0.92rem", color: "var(--rm-text)", fontWeight: 400 }}>France entière & International</div>
+              <div style={{ fontSize: "0.92rem", color: "var(--rm-text)", fontWeight: 400 }}>Lyon & France entière </div>
             </div>
 
             <div style={{ marginBottom: "2rem" }}>
