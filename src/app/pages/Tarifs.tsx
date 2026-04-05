@@ -105,7 +105,7 @@ export function Tarifs() {
           </Reveal>
 
           {/* Cards grid — alignItems stretch so all rows are same height */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.8rem", alignItems: "stretch" }} className="max-lg:!grid-cols-1">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "1.8rem", alignItems: "stretch" }} className="max-lg:!grid-cols-1">
             {packs.map((pack, i) => (
               <Reveal key={pack.title} delay={i * 0.12} style={{ display: "flex", flexDirection: "column" }}>
                 <div
