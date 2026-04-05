@@ -43,7 +43,7 @@ const faqs = [
 ];
 
 const whyUs = [
-  { title: "Agence Web Lyon — 100% Sur-Mesure", desc: "Pas de templates. Chaque site web créé à Lyon est conçu de zéro pour refléter votre identité et atteindre vos objectifs spécifiques." },
+  { title: "Agence Web Design Lyon — 100% Sur-Mesure", desc: "Pas de templates. Chaque site web créé à Lyon est conçu de zéro pour refléter votre identité et atteindre vos objectifs spécifiques." },
   { title: "Un seul interlocuteur", desc: "De la stratégie au développement, en passant par le design et le SEO Lyon : un chef de projet dédié qui connaît votre dossier." },
   { title: "Expertise IA intégrée", desc: "Nous intégrons l'intelligence artificielle à chaque étape pour automatiser, optimiser et vous faire gagner du temps." },
   { title: "Résultats mesurables", desc: "Chaque action est suivie avec des KPIs clairs. Reporting mensuel, tableaux de bord en temps réel, transparence totale." },
@@ -57,8 +57,8 @@ export function Home() {
   const homeSchema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "name": "R.M Web Design — Agence Web Lyon",
-    "description": "Agence web à Lyon spécialisée en création de sites web premium, web design, SEO local Lyon, SEA et automatisation IA.",
+    "name": "R.M Web Design — Agence Web Design Lyon",
+    "description": "Agence Web Design à LyonLyon spécialisée en création de sites web premium, web design, SEO local Lyon, SEA et automatisation IA.",
     "url": "https://r-m-web-design.vercel.app",
     "email": "contact.rmwebdesign@gmail.com",
     "telephone": "+33643367837",
@@ -71,7 +71,7 @@ export function Home() {
       "addressRegion": "Auvergne-Rhône-Alpes",
       "addressCountry": "FR"
     },
-    "serviceType": ["Création de site web Lyon", "Web Design Lyon", "SEO Lyon", "Agence web Lyon", "Agence digitale Lyon"],
+    "serviceType": ["Création de site web Lyon", "Web Design Lyon", "SEO Lyon", "Agence Web Design Lyon", "Agence digitale Lyon"],
   };
 
   const faqSchema = schemas.faq(faqs);
@@ -79,8 +79,8 @@ export function Home() {
   return (
     <>
       <SEO
-        title="Agence Web Lyon — Création de Sites Web & Web Design | R.M Web Design"
-        description="Agence web à Lyon spécialisée en création de sites web premium, web design sur-mesure, SEO local Lyon, SEA et automatisation IA. Devis gratuit sous 24h."
+        title="Agence Web Design Lyon — Création de Sites Web & Web Design | R.M Web Design"
+        description="Agence Web Design à LyonLyon spécialisée en création de sites web premium, web design sur-mesure, SEO local Lyon, SEA et automatisation IA. Devis gratuit sous 24h."
         canonical="/"
         schema={{ ...homeSchema, ...faqSchema }}
       />
@@ -104,7 +104,7 @@ export function Home() {
                 L'élégance digitale, <br /> <Gold>l'intelligence</Gold> <br /> <Bold>artificielle</Bold> en plus.
               </h1>
               <p style={{ fontSize: "1.05rem", color: "var(--rm-muted)", maxWidth: 520, margin: "0 auto 2.8rem", lineHeight: 1.85, fontWeight: 300 }}>
-                Agence web à Lyon spécialisée en création de sites web premium, web design sur-mesure, SEO local et automatisation IA pour propulser votre entreprise.
+                Agence Web Design à LyonLyon spécialisée en création de sites web premium, web design sur-mesure, SEO local et automatisation IA pour propulser votre entreprise.
               </p>
               <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", justifyContent: "center" }}>
                 <BtnGold to="/contact">Démarrer un projet →</BtnGold>
@@ -134,12 +134,12 @@ export function Home() {
         <Container>
           <div style={{ display: "flex", alignItems: "flex-start", gap: "5rem", marginBottom: "5rem", flexWrap: "wrap" }}>
             <Reveal direction="left" style={{ flex: 1, minWidth: 280 }}>
-              <SectionEyebrow>Expertises — Agence Web Lyon</SectionEyebrow>
+              <SectionEyebrow>Expertises — Agence Web Design Lyon</SectionEyebrow>
               <SerifTitle>Nos solutions <Gold>digitales</Gold> sur-mesure</SerifTitle>
             </Reveal>
             <Reveal direction="right" style={{ flex: 1, minWidth: 280, marginTop: "2.2rem" }}>
               <p style={{ color: "var(--rm-muted)", fontSize: "0.95rem", lineHeight: 1.85, fontWeight: 300 }}>
-                Agence web à Lyon, nous concevons des écosystèmes digitaux cohérents pour maximiser votre impact en ligne. Création de sites web, web design, SEO Lyon, SEA et IA — six expertises complémentaires, un seul interlocuteur.
+                Agence Web Design à LyonLyon, nous concevons des écosystèmes digitaux cohérents pour maximiser votre impact en ligne. Création de sites web, web design, SEO Lyon, SEA et IA — six expertises complémentaires, un seul interlocuteur.
               </p>
             </Reveal>
           </div>
@@ -166,7 +166,7 @@ export function Home() {
         <Container>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: "5rem" }}>
-              <SectionEyebrow center>Notre méthode — Agence Web Lyon</SectionEyebrow>
+              <SectionEyebrow center>Notre méthode — Agence Web Design Lyon</SectionEyebrow>
               <SerifTitle center>Un processus <Gold>clair</Gold> et transparent</SerifTitle>
               <p style={{ color: "var(--rm-muted)", maxWidth: 500, margin: "1rem auto 0", fontSize: "0.95rem", fontWeight: 300, lineHeight: 1.8 }}>
                 De la première idée à la mise en ligne, chaque étape de création de votre site web est pilotée avec vous.
@@ -193,12 +193,12 @@ export function Home() {
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: "4rem" }}>
               <div style={{ marginBottom: "2rem", display: "flex", justifyContent: "center" }}>
-                <img src={logoSvg} alt="R.M Web Design — Agence Web Lyon" style={{ height: 220, width: "auto", objectFit: "contain", filter: isDark ? "drop-shadow(0 0 20px rgba(162, 119, 67, 0.3))" : "none", transition: "all 0.4s ease-in-out" }} />
+                <img src={logoSvg} alt="R.M Web Design — Agence Web Design Lyon" style={{ height: 220, width: "auto", objectFit: "contain", filter: isDark ? "drop-shadow(0 0 20px rgba(162, 119, 67, 0.3))" : "none", transition: "all 0.4s ease-in-out" }} />
               </div>
-              <SectionEyebrow center>Pourquoi choisir notre agence web à Lyon</SectionEyebrow>
+              <SectionEyebrow center>Pourquoi choisir notre agence web design à lyonLyon</SectionEyebrow>
               <SerifTitle center>L'agence qui fait la <Gold>différence</Gold></SerifTitle>
               <p style={{ color: "var(--rm-muted)", maxWidth: 560, margin: "1rem auto 0", fontSize: "0.95rem", fontWeight: 300, lineHeight: 1.8 }}>
-                R.M Web Design, agence web Lyon, est bien plus qu'un prestataire — un partenaire de croissance pour votre entreprise.
+                R.M Web Design, agence Web Design Lyon, est bien plus qu'un prestataire — un partenaire de croissance pour votre entreprise.
               </p>
             </div>
           </Reveal>
@@ -245,7 +245,7 @@ export function Home() {
         <Container>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: "4rem" }}>
-              <SectionEyebrow center>FAQ — Agence Web Lyon</SectionEyebrow>
+              <SectionEyebrow center>FAQ — Agence Web Design Lyon</SectionEyebrow>
               <SerifTitle center>Questions <Gold>fréquentes</Gold></SerifTitle>
             </div>
           </Reveal>
@@ -258,13 +258,13 @@ export function Home() {
         <Container>
           <Reveal>
             <div style={{ marginBottom: "2rem", display: "flex", justifyContent: "center" }}>
-              <img src={logoSvg} alt="R.M Web Design — Agence Web Lyon" style={{ height: 100, width: "auto", objectFit: "contain", filter: isDark ? "drop-shadow(0 0 15px rgba(162, 119, 67, 0.2))" : "none", transition: "all 0.4s ease-in-out" }} />
+              <img src={logoSvg} alt="R.M Web Design — Agence Web Design Lyon" style={{ height: 100, width: "auto", objectFit: "contain", filter: isDark ? "drop-shadow(0 0 15px rgba(162, 119, 67, 0.2))" : "none", transition: "all 0.4s ease-in-out" }} />
             </div>
             <h2 style={{ fontFamily: "var(--rm-serif)", fontSize: "clamp(2rem, 4vw, 3.5rem)", fontWeight: 300, color: "var(--rm-ink-strong)", marginBottom: "1.5rem" }}>
               Votre projet web à <em style={{ fontStyle: "italic", color: "var(--rm-gold)" }}>Lyon</em> commence ici
             </h2>
             <p style={{ color: "var(--rm-ink-fade)", maxWidth: 500, margin: "0 auto 2.5rem", fontSize: "0.95rem", fontWeight: 300, lineHeight: 1.8 }}>
-              Agence web Lyon — Parlons de vos objectifs et voyons comment nous pouvons les atteindre ensemble. Réponse sous 24h.
+              Agence Web Design Lyon — Parlons de vos objectifs et voyons comment nous pouvons les atteindre ensemble. Réponse sous 24h.
             </p>
             <BtnGold to="/contact">Demander un devis gratuit →</BtnGold>
           </Reveal>

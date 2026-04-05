@@ -2,7 +2,7 @@ import { Container, SectionPad, PageHero, Reveal, SectionEyebrow, SerifTitle, Go
 import { SEO, schemas } from "../components/SEO";
 
 const features = [
-  { title: "Design Web Sur-Mesure à Lyon", desc: "Chaque pixel est pensé pour refléter votre identité de marque. Pas de template, que du sur-mesure créé par votre agence web à Lyon.", items: ["Maquettes Figma personnalisées", "Charte graphique cohérente", "Typographies premium", "Identité visuelle unique"] },
+  { title: "Design Web Sur-Mesure à Lyon", desc: "Chaque pixel est pensé pour refléter votre identité de marque. Pas de template, que du sur-mesure créé par votre agence web design à lyonLyon.", items: ["Maquettes Figma personnalisées", "Charte graphique cohérente", "Typographies premium", "Identité visuelle unique"] },
   { title: "Performance & Rapidité", desc: "Un site rapide convertit mieux. Nous optimisons chaque aspect technique pour des temps de chargement records.", items: ["Score PageSpeed 90+", "Images optimisées WebP/AVIF", "Code minifié & compressé", "CDN & cache avancé"] },
   { title: "Responsive & Mobile-First", desc: "Plus de 60% du trafic vient du mobile. Votre site web créé à Lyon s'adaptera parfaitement à tous les écrans.", items: ["Design adaptatif fluide", "Navigation tactile optimisée", "Tests multi-appareils", "Progressive Web App"] },
   { title: "Sécurité & Hébergement", desc: "Hébergement haute disponibilité, certificat SSL, sauvegardes automatiques et mises à jour régulières.", items: ["Certificat SSL inclus", "Sauvegardes quotidiennes", "Protection anti-malware", "Uptime garanti 99.9%"] },
@@ -13,7 +13,7 @@ export function CreationWeb() {
     <>
       <SEO
         title="Création de Site Web Lyon — Agence Web Design | R.M Web Design"
-        description="Agence création de site web à Lyon. Sites vitrines et e-commerce sur-mesure, design premium, responsive et SEO optimisé. Devis gratuit en 24h. Agence web Lyon."
+        description="Agence création de site web à Lyon. Sites vitrines et e-commerce sur-mesure, design premium, responsive et SEO optimisé. Devis gratuit en 24h. Agence Web Design Lyon."
         canonical="/creation-web"
         schema={schemas.breadcrumb([{ name: "Accueil", url: "/" }, { name: "Création Site Web Lyon", url: "/creation-web" }])}
       />
@@ -58,7 +58,7 @@ export function CreationWeb() {
               </div>
               <div style={{ flex: 1, minWidth: 280, color: "var(--rm-muted)", fontSize: "0.95rem", lineHeight: 1.9, fontWeight: 300, marginTop: "1rem" }}>
                 <p style={{ marginBottom: "1.2rem" }}>
-                  R.M Web Design est une <strong style={{ fontWeight: 600, color: "var(--rm-text)" }}>agence web à Lyon</strong> spécialisée dans la création de sites web premium et le web design sur-mesure. Nous concevons des sites vitrines, des e-commerces et des applications web pour les entreprises lyonnaises et nationales.
+                  R.M Web Design est une <strong style={{ fontWeight: 600, color: "var(--rm-text)" }}>agence web design à lyonLyon</strong> spécialisée dans la création de sites web premium et le web design sur-mesure. Nous concevons des sites vitrines, des e-commerces et des applications web pour les entreprises lyonnaises et nationales.
                 </p>
                 <p style={{ marginBottom: "1.2rem" }}>
                   Notre approche de <strong style={{ fontWeight: 600, color: "var(--rm-text)" }}>création de site web à Lyon</strong> combine design élégant, performance technique et optimisation SEO pour vous garantir un outil digital qui génère des résultats concrets.

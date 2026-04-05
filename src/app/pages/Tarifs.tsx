@@ -80,12 +80,12 @@ export function Tarifs() {
   return (
     <>
       <SEO
-        title="Tarifs Agence Web Lyon — Création Site, SEO, IA | R.M Web Design"
-        description="Tarifs agence web Lyon. 3 packs : Site Vitrine Lyon, Croissance Digitale et Pack Premium. Devis 100% personnalisé et gratuit pour votre projet web à Lyon."
+        title="Tarifs Agence Web Design Lyon — Création Site, SEO, IA | R.M Web Design"
+        description="Tarifs agence Web Design Lyon. 3 packs : Site Vitrine Lyon, Croissance Digitale et Pack Premium. Devis 100% personnalisé et gratuit pour votre projet web à Lyon."
         canonical="/tarifs"
       />
       <PageHero
-        eyebrow="Tarifs Agence Web Lyon"
+        eyebrow="Tarifs Agence Web Design Lyon"
         title={<>Tarifs agence web <Gold>Lyon</Gold> — Formules sur-mesure</>}
         description="Trois packs conçus pour évoluer avec vous. Chaque devis est 100 % personnalisé selon vos objectifs, votre secteur et votre budget — sans mauvaise surprise."
       />
