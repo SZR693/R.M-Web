@@ -59,7 +59,7 @@ export function Home() {
     "@type": "ProfessionalService",
     "name": "R.M Web Design — Agence Web Design Lyon",
     "description": "Agence Web Design à Lyon spécialisée en création de sites web premium, web design, SEO local Lyon, SEA et automatisation IA.",
-    "url": "https://https://www.rm-webdesign.fr/",
+    "url": "https://www.rm-webdesign.fr/",
     "email": "contact.rmwebdesign@gmail.com",
     "telephone": "+33643367837",
     "areaServed": ["Lyon", "Métropole de Lyon", "Rhône-Alpes", "France"],

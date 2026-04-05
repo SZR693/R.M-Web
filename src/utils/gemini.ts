@@ -1,40 +1,48 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+// src/utils/gemini.ts
 
-// @ts-ignore
-const apiKey = import.meta.env.VITE_GEMINI_API_KEY || "";
-const genAI = new GoogleGenerativeAI(apiKey);
-
-async function fileToGenerativePart(file: File) {
-  const base64EncodedDataPromise = new Promise((resolve) => {
+async function fileToBase64(file: File): Promise<{ data: string; mimeType: string }> {
+  return new Promise((resolve) => {
     const reader = new FileReader();
-    reader.onloadend = () => resolve((reader.result as string).split(',')[1]);
+    reader.onloadend = () => {
+      const base64 = (reader.result as string).split(",")[1];
+      resolve({ data: base64, mimeType: file.type });
+    };
     reader.readAsDataURL(file);
   });
-  return {
-    inlineData: { data: await base64EncodedDataPromise as string, mimeType: file.type },
-  };
 }
 
-export const getGeminiResponse = async (userMessage: string, history: string, imageFile?: File | null) => {
+export const getGeminiResponse = async (
+  userMessage: string,
+  history: string,
+  imageFile?: File | null
+): Promise<string> => {
   try {
-    const model = genAI.getGenerativeModel({ 
-      model: "gemini-2.5-flash",
-      systemInstruction: "Tu es l'expert de l'agence R.M Web Design. Ton ton est luxueux et concis (4 lignes max, utilise des emojis/puces). Services: Site, SEO, IA, Automatisation. Redirige toujours vers le bouton Contact. Si image: fait un audit UX rapide."
-    });
+    let image: string | undefined;
+    let mimeType: string | undefined;
 
-    const promptParts: any[] = [`Historique:\n${history}\n\nClient: ${userMessage || "Analyse mon image."}`];
-    
     if (imageFile) {
-      const imagePart = await fileToGenerativePart(imageFile);
-      promptParts.push(imagePart);
+      const b64 = await fileToBase64(imageFile);
+      image = b64.data;
+      mimeType = b64.mimeType;
     }
 
-    const result = await model.generateContent(promptParts);
-    return result.response.text();
-    
-  } catch (error: any) {
-    console.error("Erreur Gemini :", error.message);
-    if (error.message.includes("429")) return "Je réfléchis un peu trop vite ☕ ! Attendez une petite minute avant le prochain message.";
+    const res = await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: userMessage, history, image, mimeType }),
+    });
+
+    if (res.status === 429) {
+      return "Je réfléchis un peu trop vite ☕ ! Attendez une petite minute avant le prochain message.";
+    }
+
+    if (!res.ok) throw new Error("Server error");
+
+    const data = await res.json();
+    return data.text;
+
+  } catch (error) {
+    console.error("Erreur chat:", error);
     return "Petit souci technique. Contactez-nous via le bouton Contact !";
   }
 };
