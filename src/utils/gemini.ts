@@ -1,58 +1,40 @@
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+// @ts-ignore
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY || "";
+const genAI = new GoogleGenerativeAI(apiKey);
+
+async function fileToGenerativePart(file: File) {
+  const base64EncodedDataPromise = new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve((reader.result as string).split(',')[1]);
+    reader.readAsDataURL(file);
+  });
+  return {
+    inlineData: { data: await base64EncodedDataPromise as string, mimeType: file.type },
+  };
+}
 
 export const getGeminiResponse = async (userMessage: string, history: string, imageFile?: File | null) => {
   try {
-    let imageBase64: string | undefined = undefined;
-    let mimeType: string | undefined = undefined;
-
-    if (imageFile) {
-      const fileData = await fileToBase64(imageFile);
-      imageBase64 = fileData.base64;
-      mimeType = fileData.mimeType;
-    }
-
-    const response = await fetch('/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ userMessage, history, imageBase64, mimeType })
+    const model = genAI.getGenerativeModel({ 
+      model: "gemini-2.5-flash",
+      systemInstruction: "Tu es l'expert de l'agence R.M Web Design. Ton ton est luxueux et concis (4 lignes max, utilise des emojis/puces). Services: Site, SEO, IA, Automatisation. Redirige toujours vers le bouton Contact. Si image: fait un audit UX rapide."
     });
 
-    let data: any = null;
-    try {
-      data = await response.json();
-    } catch (parseError) {
-      data = { error: `Erreur serveur: ${response.status} ${response.statusText}` };
+    const promptParts: any[] = [`Historique:\n${history}\n\nClient: ${userMessage || "Analyse mon image."}`];
+    
+    if (imageFile) {
+      const imagePart = await fileToGenerativePart(imageFile);
+      promptParts.push(imagePart);
     }
 
-    if (!response.ok) {
-      if (response.status === 429) {
-        return "Je réfléchis un peu trop vite ☕ ! Attendez une petite minute avant le prochain message.";
-      }
-      return data?.error || `Erreur lors de la communication avec le serveur (${response.status})`;
-    }
-
-    return data.text;
+    const result = await model.generateContent(promptParts);
+    return result.response.text();
+    
   } catch (error: any) {
-    console.error("Erreur Gemini (Client) :", error?.message ?? error);
+    console.error("Erreur Gemini :", error.message);
+    if (error.message.includes("429")) return "Je réfléchis un peu trop vite ☕ ! Attendez une petite minute avant le prochain message.";
     return "Petit souci technique. Contactez-nous via le bouton Contact !";
   }
 };
-
-async function fileToBase64(file: File): Promise<{ base64: string; mimeType: string }> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      const result = reader.result;
-      if (typeof result !== 'string') {
-        reject(new Error('Impossible de lire le fichier en base64.'));
-        return;
-      }
-
-      const [meta, data] = result.split(',');
-      const mimeType = meta.replace(/^data:(.*);base64$/, '$1');
-      resolve({ base64: data, mimeType });
-    };
-
-    reader.onerror = () => reject(new Error('Erreur de lecture du fichier.'));
-    reader.readAsDataURL(file);
-  });
-}
