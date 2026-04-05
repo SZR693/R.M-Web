@@ -257,7 +257,7 @@ export function Contact() {
     <>
       <SEO
         title="Contact Agence Web Design Lyon — Devis Gratuit Création Site | R.M Web Design"
-        description="Contactez votre agence web design à lyonLyon. Devis gratuit pour création de site web, SEO Lyon, SEA ou IA. Réponse garantie sous 24h. R.M Web Design Lyon."
+        description="Contactez votre agence web design à Lyon. Devis gratuit pour création de site web, SEO Lyon, SEA ou IA. Réponse garantie sous 24h. R.M Web Design Lyon."
         canonical="/contact"
       />
       <SectionPad style={{ background: "var(--rm-bg)" }}>

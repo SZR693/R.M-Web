@@ -58,7 +58,7 @@ export function Home() {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "R.M Web Design — Agence Web Design Lyon",
-    "description": "Agence Web Design à LyonLyon spécialisée en création de sites web premium, web design, SEO local Lyon, SEA et automatisation IA.",
+    "description": "Agence Web Design à Lyon spécialisée en création de sites web premium, web design, SEO local Lyon, SEA et automatisation IA.",
     "url": "https://r-m-web-design.vercel.app",
     "email": "contact.rmwebdesign@gmail.com",
     "telephone": "+33643367837",
@@ -80,7 +80,7 @@ export function Home() {
     <>
       <SEO
         title="Agence Web Design Lyon — Création de Sites Web & Web Design | R.M Web Design"
-        description="Agence Web Design à LyonLyon spécialisée en création de sites web premium, web design sur-mesure, SEO local Lyon, SEA et automatisation IA. Devis gratuit sous 24h."
+        description="Agence Web Design à Lyon spécialisée en création de sites web premium, web design sur-mesure, SEO local Lyon, SEA et automatisation IA. Devis gratuit sous 24h."
         canonical="/"
         schema={{ ...homeSchema, ...faqSchema }}
       />
@@ -104,7 +104,7 @@ export function Home() {
                 L'élégance digitale, <br /> <Gold>l'intelligence</Gold> <br /> <Bold>artificielle</Bold> en plus.
               </h1>
               <p style={{ fontSize: "1.05rem", color: "var(--rm-muted)", maxWidth: 520, margin: "0 auto 2.8rem", lineHeight: 1.85, fontWeight: 300 }}>
-                Agence Web Design à LyonLyon spécialisée en création de sites web premium, web design sur-mesure, SEO local et automatisation IA pour propulser votre entreprise.
+                Agence Web Design à Lyon spécialisée en création de sites web premium, web design sur-mesure, SEO local et automatisation IA pour propulser votre entreprise.
               </p>
               <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", justifyContent: "center" }}>
                 <BtnGold to="/contact">Démarrer un projet →</BtnGold>
@@ -139,7 +139,7 @@ export function Home() {
             </Reveal>
             <Reveal direction="right" style={{ flex: 1, minWidth: 280, marginTop: "2.2rem" }}>
               <p style={{ color: "var(--rm-muted)", fontSize: "0.95rem", lineHeight: 1.85, fontWeight: 300 }}>
-                Agence Web Design à LyonLyon, nous concevons des écosystèmes digitaux cohérents pour maximiser votre impact en ligne. Création de sites web, web design, SEO Lyon, SEA et IA — six expertises complémentaires, un seul interlocuteur.
+                Agence Web Design à Lyon, nous concevons des écosystèmes digitaux cohérents pour maximiser votre impact en ligne. Création de sites web, web design, SEO Lyon, SEA et IA — six expertises complémentaires, un seul interlocuteur.
               </p>
             </Reveal>
           </div>
@@ -195,7 +195,7 @@ export function Home() {
               <div style={{ marginBottom: "2rem", display: "flex", justifyContent: "center" }}>
                 <img src={logoSvg} alt="R.M Web Design — Agence Web Design Lyon" style={{ height: 220, width: "auto", objectFit: "contain", filter: isDark ? "drop-shadow(0 0 20px rgba(162, 119, 67, 0.3))" : "none", transition: "all 0.4s ease-in-out" }} />
               </div>
-              <SectionEyebrow center>Pourquoi choisir notre agence web design à lyonLyon</SectionEyebrow>
+              <SectionEyebrow center>Pourquoi choisir notre agence web design à Lyon</SectionEyebrow>
               <SerifTitle center>L'agence qui fait la <Gold>différence</Gold></SerifTitle>
               <p style={{ color: "var(--rm-muted)", maxWidth: 560, margin: "1rem auto 0", fontSize: "0.95rem", fontWeight: 300, lineHeight: 1.8 }}>
                 R.M Web Design, agence Web Design Lyon, est bien plus qu'un prestataire — un partenaire de croissance pour votre entreprise.
