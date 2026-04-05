@@ -14,7 +14,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  assetsInclude: ['**/*.svg', '**/*.csv', '**/*.html'],
+  assetsInclude: ['**/*.svg', '**/*.csv'],
 
   build: {
     rollupOptions: {
