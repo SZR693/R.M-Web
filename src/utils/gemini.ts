@@ -16,14 +16,20 @@ export const getGeminiResponse = async (userMessage: string, history: string, im
       body: JSON.stringify({ userMessage, history, imageBase64, mimeType })
     });
 
+    let data: any = null;
+    try {
+      data = await response.json();
+    } catch (parseError) {
+      data = { error: `Erreur serveur: ${response.status} ${response.statusText}` };
+    }
+
     if (!response.ok) {
       if (response.status === 429) {
         return "Je réfléchis un peu trop vite ☕ ! Attendez une petite minute avant le prochain message.";
       }
-      throw new Error("Erreur lors de la communication avec le serveur");
+      return data?.error || `Erreur lors de la communication avec le serveur (${response.status})`;
     }
 
-    const data = await response.json();
     return data.text;
   } catch (error: any) {
     console.error("Erreur Gemini (Client) :", error?.message ?? error);
