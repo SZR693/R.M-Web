@@ -8,7 +8,7 @@ interface SEOProps {
   schema?: object;
 }
 
-const BASE_URL = "https://r-m-web-design.vercel.app";
+const BASE_URL = "https://https://www.rm-webdesign.fr";
 const DEFAULT_IMAGE = `${BASE_URL}/favicon.svg`;
 
 export function SEO({ title, description, canonical, ogImage, schema }: SEOProps) {
@@ -90,7 +90,7 @@ export const schemas = {
     "@type": "ProfessionalService",
     "name": "R.M Web Design",
     "description": "Agence digitale spécialisée en création de sites web premium, SEO, SEA, SMA et automatisation IA.",
-    "url": "https://r-m-web-design.vercel.app",
+    "url": "https://https://www.rm-webdesign.fr",
     "email": "contact.rmwebdesign@gmail.com",
     "telephone": "+33643367837",
     "areaServed": "FR",
@@ -105,7 +105,7 @@ export const schemas = {
       "@type": "ListItem",
       "position": i + 1,
       "name": item.name,
-      "item": `https://r-m-web-design.vercel.app${item.url}`,
+      "item": `https://https://www.rm-webdesign.fr${item.url}`,
     })),
   }),
   faq: (items: { q: string; a: string }[]) => ({
