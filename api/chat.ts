@@ -30,9 +30,13 @@ export default async function handler(req: any, res: any) {
     });
 
     const promptParts: any[] = [`Historique:\n${history}\n\nClient: ${userMessage || "Analyse mon image."}`];
+    
     if (imageBase64 && mimeType) {
+      // Sécurité : on s'assure d'enlever le préfixe "data:image/...;base64," s'il est présent
+      const base64Data = imageBase64.includes(',') ? imageBase64.split(',')[1] : imageBase64;
+      
       promptParts.push({
-        inlineData: { data: imageBase64, mimeType }
+        inlineData: { data: base64Data, mimeType }
       });
     }
 
