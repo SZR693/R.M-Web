@@ -1,6 +1,11 @@
 <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" 
-        style="fill:#9C6732; font-family:serif; font-weight:bold; font-size:250px;">
-    R.M
+  <rect width="500" height="500" rx="60" fill="#0f0e0c"/>
+  <text x="250" y="310" 
+        text-anchor="middle" 
+        font-family="Georgia, 'Times New Roman', serif"
+        font-weight="bold" 
+        font-size="240"
+        fill="#9C6732">
+    RM
   </text>
 </svg>
