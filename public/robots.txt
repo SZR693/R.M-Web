@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://www.rm-webdesign.frsitemap.xml
+Sitemap: https://www.rm-webdesign.fr/sitemap.xml
