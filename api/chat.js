@@ -1,13 +1,12 @@
-// api/chat.ts
-import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+// api/chat.js
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const apiKey = process.env.GEMINI_API_KEY; // ← variable serveur, jamais exposée
+  const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
     return res.status(500).json({ error: "API key not configured" });
   }
@@ -17,12 +16,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({
-      model: "gemini-2.5-flash",
+      model: "gemini-1.5-flash",
       systemInstruction:
         "Tu es l'expert de l'agence R.M Web Design. Ton ton est luxueux et concis (4 lignes max, utilise des emojis/puces). Services: Site, SEO, IA, Automatisation. Redirige toujours vers le bouton Contact. Si image: fait un audit UX rapide.",
     });
 
-    const promptParts: any[] = [
+    const promptParts = [
       `Historique:\n${history}\n\nClient: ${message || "Analyse mon image."}`,
     ];
 
@@ -33,11 +32,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const result = await model.generateContent(promptParts);
     return res.status(200).json({ text: result.response.text() });
 
-  } catch (error: any) {
+  } catch (error) {
     console.error("Gemini error:", error.message);
     if (error.message?.includes("429")) {
       return res.status(429).json({ error: "rate_limit" });
     }
     return res.status(500).json({ error: "internal" });
   }
-}
+};
